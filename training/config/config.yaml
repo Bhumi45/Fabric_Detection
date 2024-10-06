@@ -3,7 +3,8 @@ artifacts_root: artifacts
 data ingestion:
   root dir: artifacts/data_ingestion
   source: data/textures 3
-  STATUS_FILE: artifacts/data_validation/status.txt
+  data_dir: artifacts/data_ingestion/fabric_data
+  STATUS_FILE: artifacts/data_ingestion/status.txt
 
 data validation:
   root_dir: artifacts/data_validation
@@ -14,6 +15,11 @@ image_processing:
   root_dir: artifacts/image_processing
   data_dir: artifacts/data_ingestion/fabric_data
   STATUS_FILE: artifacts/image_processing/status.txt
+
+feature_extraction:
+  root_dir: artifacts/feature_extraction
+  data_dir: artifacts/data_ingestion/fabric_data
+  STATUS_FILE: artifacts/feature_extraction/status.txt
 
 feature_engineering:
   root_dir: artifacts/feature_engineering

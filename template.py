@@ -23,7 +23,7 @@ training_pipeline_files = [
     "training/config/config.yaml",
     "training/config/params.yaml",
     "training/config/schema.yaml",
-    "training/componenets/__init__.py",
+    "training/components/__init__.py",
     "training/components/data_ingestion.py",
     "training/components/data_validation.py",
     "training/components/image_processing.py",

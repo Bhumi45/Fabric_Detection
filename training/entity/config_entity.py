@@ -6,6 +6,7 @@ from pathlib import Path
 class DataIngestionConfig:
     root_dir: Path
     source: Path
+    data_dir: Path
     STATUS_FILE: str
 #2
 @dataclass(frozen=True)
