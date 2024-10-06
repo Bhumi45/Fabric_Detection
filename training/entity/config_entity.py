@@ -1,22 +1,41 @@
 from dataclasses import dataclass
 from pathlib import Path 
 
+#1
 @dataclass(frozen=True)
 class DataIngestionConfig:
     root_dir: Path
     source: Path
+    STATUS_FILE: str
+#2
 @dataclass(frozen=True)
 class DataValidationConfig:
     root_dir: Path
     data_dir: Path
     STATUS_FILE: str
 
+#3
 @dataclass(frozen=True)
-class DataTransformationConfig:
+class ImageProcessingConfig:
     root_dir: Path
-    data_path: Path
+    data_dir: Path
+    STATUS_FILE: str
 
+#4
+@dataclass(frozen=True)
+class FeatureExtractionConfig:
+    root_dir: Path
+    data_dir: Path
+    STATUS_FILE: str
 
+#5
+@dataclass(frozen=True)
+class FeatureEngineeringConfig:
+    root_dir: Path
+    data_dir: Path
+    STATUS_FILE: str
+
+#6
 # Changes will be made as per the model is configured
 @dataclass(frozen=True)
 class ModelTrainerConfig:
@@ -28,7 +47,7 @@ class ModelTrainerConfig:
     alpha: float
     l1_ratio: float
     target_column: str
-
+#7
 @dataclass(frozen=True)
 class ModelEvaluationConfig:
     root_dir: Path

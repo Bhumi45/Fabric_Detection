@@ -3,15 +3,22 @@ artifacts_root: artifacts
 data ingestion:
   root dir: artifacts/data_ingestion
   source: data/textures 3
+  STATUS_FILE: artifacts/data_validation/status.txt
 
 data validation:
   root_dir: artifacts/data_validation
   data_dir: artifacts/data_ingestion/fabric_data
   STATUS_FILE: artifacts/data_validation/status.txt  # status of data validation 
 
-data_transformation:
-  root_dir: artifacts/data_transformation
-  data_path: artifacts/data_ingestion/fabric_data
+image_processing:
+  root_dir: artifacts/image_processing
+  data_dir: artifacts/data_ingestion/fabric_data
+  STATUS_FILE: artifacts/image_processing/status.txt
+
+feature_engineering:
+  root_dir: artifacts/feature_engineering
+  data_dir: artifacts/data_ingestion/fabric_data
+  STATUS_FILE: artifacts/feature_engineering/status.txt
 
 #Changes will need to be done for model_trainer and model_evaluation as we are doing a nested cross validation
 model_trainer:
