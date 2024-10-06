@@ -67,7 +67,7 @@ class ConfigurationManager:
 
         feature_extraction_config = FeatureExtractionConfig(
             root_dir = config.root_dir,
-            data_path=config.data_dir,
+            data_dir=config.data_dir,
             STATUS_FILE=config.STATUS_FILE
         )
 
