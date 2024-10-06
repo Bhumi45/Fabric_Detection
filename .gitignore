@@ -163,3 +163,7 @@ cython_debug/
 
 # Laptop notebooks for the time being
 laptop_notebooks/
+
+# artifacts
+artifacts/feature_extraction/*.npz
+

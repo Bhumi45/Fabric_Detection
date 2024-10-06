@@ -124,6 +124,9 @@ class FeatureExtraction:
 
         logging.info(f"Data, labels, and groups have been saved to {save_dir}")
 
+        with open(self.config.STATUS_FILE, "w") as f:
+            f.write(f"Feature Extraction status: {True}")
+
     def trigger_feature_extraction(self):
         try:
             # Setting up dataset_dir and categories variables
@@ -186,6 +189,8 @@ class FeatureExtraction:
 
 
         except Exception as e:
+            with open(self.config.STATUS_FILE, "w") as f:
+                f.write(f"Feature Extraction status: {False}")
             raise CustomException(e, sys)            
 
 
