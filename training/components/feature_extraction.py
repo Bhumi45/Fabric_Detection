@@ -58,7 +58,7 @@ class FeatureExtraction:
             fimg = cv2.filter2D(image, cv2.CV_8UC3, kernel)
             gabor_features.append(fimg)
 
-        gabor_features = gabor_features.flatten()
+        gabor_features = np.array(gabor_features).flatten()
 
         return gabor_features
     
