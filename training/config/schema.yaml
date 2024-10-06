@@ -1,2 +1,5 @@
 # Not required in this project for the time being.
-COLUMNS : None
+LABELS:
+  label_1: corduroy
+  label_2: denim
+  label_3: lenin

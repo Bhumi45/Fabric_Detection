@@ -1,7 +1,7 @@
 import os
 import sys
 from PIL import Image
-from concurrent.futures import ThreadPoolExecutor
+from concurrent.futures import ThreadPoolExecutor  # Allows multi-threading
 from training.entity.config_entity import DataValidationConfig
 from training.configuration_manager.configuration import ConfigurationManager
 from logger import logging
