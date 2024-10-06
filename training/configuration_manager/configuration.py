@@ -63,11 +63,13 @@ class ConfigurationManager:
 #4    
     def get_feature_extraction_config(self) -> FeatureExtractionConfig:
         config = self.config.feature_extraction
+        schema = self.config.schema
         create_directories([config.root_dir])
 
         feature_extraction_config = FeatureExtractionConfig(
             root_dir = config.root_dir,
             data_dir=config.data_dir,
+            schema=schema,
             STATUS_FILE=config.STATUS_FILE
         )
 
