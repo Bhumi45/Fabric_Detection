@@ -27,7 +27,7 @@ class ImageProcessingConfig:
 class FeatureExtractionConfig:
     root_dir: Path
     data_dir: Path
-    schema: Path
+    schema: dict
     STATUS_FILE: str
 
 #5
