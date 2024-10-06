@@ -128,7 +128,7 @@ class FeatureExtraction:
         try:
             # Setting up dataset_dir and categories variables
             dataset_dir = self.config.data_dir 
-            LABELS = self.config.schema.LABELS
+            LABELS = self.config.schema
             categories = [x for x in LABELS.values()]
 
             # Prepare dataset, labels, and groups
