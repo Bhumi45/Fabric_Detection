@@ -118,7 +118,7 @@ class NestedCrossVal:
     
 
     # Creating Parameter Grids
-    def create_param_grids():
+    def create_param_grids(self):
 
         # Used Wolfram to decide mean and std_dev https://www.wolframalpha.com/input?i=X%7EN%28450%2C40%5E2%29+P%28300%3C%3DX%3C%3D500%29
         # Define parameters for the normal distribution
