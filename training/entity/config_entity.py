@@ -71,4 +71,4 @@ class NestedCrossValConfig:
     train_data_path: Path
     test_data_path: Path
     model_name: str
-    STATUS_FILE: Path
+    STATUS_FILE: str

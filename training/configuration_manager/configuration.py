@@ -127,6 +127,9 @@ class ConfigurationManager:
     def get_nested_cross_val_config(self) -> NestedCrossValConfig:
         config = self.config.nested_cross_val
         create_directories([config.root_dir])
+        create_directories([config.extracted_features, config.random_search_models_rf, config.model_cache_rf])
+        create_directories([config.train_data_path, config.test_data_path])
+        
 
         nested_cross_val_config = NestedCrossValConfig(
             root_dir = config.root_dir,
