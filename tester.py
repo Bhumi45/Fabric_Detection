@@ -1,6 +1,6 @@
 # Used to perform random tests
 
-from training.components.feature_extraction import FeatureExtraction
+from training.components.common.feature_extraction import FeatureExtraction
 from training.configuration_manager.configuration import ConfigurationManager
 from training.utils.common import get_size
 import os

@@ -59,3 +59,16 @@ class ModelEvaluationConfig:
     metric_file_name: Path
     target_column: str
     mlflow_uri: str
+
+
+@dataclass(frozen=True)
+class NestedCrossValConfig:
+    root_dir: Path
+    extracted_features: Path
+    random_search_models_rf: Path
+    model_cache_rf: Path
+    #random_search_models_svm: Path
+    train_data_path: Path
+    test_data_path: Path
+    model_name: str
+    STATUS_FILE: Path

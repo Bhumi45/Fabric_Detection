@@ -7,6 +7,7 @@ from training.entity.config_entity import FeatureExtractionConfig
 from training.entity.config_entity import FeatureEngineeringConfig
 from training.entity.config_entity import ModelTrainerConfig
 from training.entity.config_entity import ModelEvaluationConfig
+from training.entity.config_entity import NestedCrossValConfig
 
 class ConfigurationManager:
     def __init__(
@@ -120,4 +121,23 @@ class ConfigurationManager:
         )
 
         return model_evaluation_config
+    
+
+#8
+    def get_nested_cross_val_config(self) -> NestedCrossValConfig:
+        config = self.config.nested_cross_val
+        create_directories([config.root_dir])
+
+        nested_cross_val_config = NestedCrossValConfig(
+            root_dir = config.root_dir,
+            extracted_features= config.extracted_features,
+            random_search_models_rf= config.random_search_models_rf,
+            model_cache_rf= config.model_cache_rf,
+            train_data_path = config.train_data_path,
+            test_data_path= config.test_data_path,
+            model_name = config.model_name,
+            STATUS_FILE= config.STATUS_FILE
+        )
+
+        return nested_cross_val_config
     
