@@ -67,7 +67,21 @@ class NestedCrossVal:
         return X_train, X_test, y_train, y_test,groups_train
         
 
-    def initialize_outer_loops(self):
+    def save_train_test_data_for_final_train(self, X_train, X_test, y_train, y_test, groups_train):
+        # Save X_train, X_test, y_train, y_test to be used by final_train
+        # Path to the 'Extracted Features' directory
+
+        train_data_path = self.config.train_data_path
+        test_data_path = self.config.test_data_path
+
+        # Save X_train,y_train and groups_train to train.npz
+        # Save X_test,y_test to test.npz
+        np.savez(os.path.join(train_data_path, 'Train.npz'), X_train=X_train, y_train=y_train, groups_train=groups_train)
+        np.savez(os.path.join(test_data_path, 'Test.npz'),  X_test=X_test, y_test=y_test)
+
+        logging.info(f"Train.npz and Test.npz saved at {train_data_path} and {test_data_path}")
+
+    def initialize_outer_loop(self):
         outer_cv = GroupKFold(n_splits=2)
         return outer_cv
     

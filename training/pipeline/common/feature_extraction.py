@@ -21,7 +21,7 @@ class FeatureExtractionPipeline:
             raise CustomException(e, sys)
         
 
-"""if __name__ == "__main__":
+if __name__ == "__main__":
     try:
         logging.info(f">>>>> {PIPELINE} started <<<<")
         obj = FeatureExtractionPipeline()
@@ -29,4 +29,4 @@ class FeatureExtractionPipeline:
         logging.info(f">>>>>>>> {PIPELINE} completed <<<<<<<<<")
     except Exception as e:
         logging.error(e)
-        raise CustomException(e, sys)"""
+        raise CustomException(e, sys)

@@ -1,5 +1,6 @@
 import cv2
 import numpy as np
+import pandas as pd
 import os
 import sys
 from skimage.feature import local_binary_pattern
@@ -99,7 +100,22 @@ class FeatureExtraction:
 
         return features # Return features back as NumPy array for further processing
     
+    @staticmethod
+    def encoder_labels(y):
+        categories = ['denim', 'corduroy','linen']
 
+        # Create a dictionary for manual mapping
+        category_mapping = { 'corduroy': 1, 'denim': 2, 'lenin': 3}
+
+        # Convert to pandas Series (optional if already in pandas)
+        y_series = pd.Series(y)
+
+        # Map categories to numbers
+        mapped_categories = y_series.map(category_mapping)
+        y = np.array(mapped_categories,dtype=np.uint8)
+
+        return y
+    
     def save_features(self,X, y, groups):
         # Convert lists to NumPy arrays
         X = np.array(X)
@@ -112,8 +128,9 @@ class FeatureExtraction:
         # Convert the groups array from int64 to int16
         groups = groups.astype(np.int16)
 
-        # We are not converting the y array to integer because first we need to encode it. Then we will convert it back to integer
-
+        # Encoding y(dtype=uint8
+        y = self.encoder_labels(y)
+        
         # Path to the 'Extracted Features' directory
         save_dir = self.config.root_dir
 
