@@ -11,14 +11,17 @@ class DataValidationPipeline:
         pass
 
     def main(self):
-        #Load the data validation configuration object
-        config = ConfigurationManager()
-        data_validation_config = config.get_data_validation_config()
+        try:
+            #Load the data validation configuration object
+            config = ConfigurationManager()
+            data_validation_config = config.get_data_validation_config()
 
-        # Passing the data validation configuration obj to the component
-        data_validation = DataValidation(config=data_validation_config)
-        data_validation.check_al_data_is_images()
-        
+            # Passing the data validation configuration obj to the component
+            data_validation = DataValidation(config=data_validation_config)
+            data_validation.check_al_data_is_images()
+        except Exception as e:
+            raise CustomException(e, sys)
+            
 
 """
 if __name__ == "__main__":

@@ -194,9 +194,9 @@ class FeatureExtraction:
             raise CustomException(e, sys)            
 
 
-if __name__ == "__main__":
+"""if __name__ == "__main__":
     config = ConfigurationManager()
     feature_extraction_config = config.get_feature_extraction_config()
     feature_extraction = FeatureExtraction(config=feature_extraction_config)
-    feature_extraction.trigger_feature_extraction()
+    feature_extraction.trigger_feature_extraction()"""
 

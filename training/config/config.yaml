@@ -18,9 +18,9 @@ feature_extraction:
   STATUS_FILE: artifacts/feature_extraction/status.txt
 
 #feature_engineering:
-  root_dir: artifacts/feature_engineering
-  data_dir: artifacts/data_ingestion/fabric_data
-  STATUS_FILE: artifacts/feature_engineering/status.txt
+  #root_dir: artifacts/feature_engineering
+  #data_dir: artifacts/data_ingestion/fabric_data
+  #STATUS_FILE: artifacts/feature_engineering/status.txt
 
 # Will make changes
 nested_cross_val:

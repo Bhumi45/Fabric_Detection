@@ -10,13 +10,16 @@ class DataIngestionPipeline:
         pass
 
     def main(self):
-        #Load the data ingestion configuration object
-        config = ConfigurationManager()
-        data_ingestion_config = config.get_data_ingestion_config()
+        try:
+            #Load the data ingestion configuration object
+            config = ConfigurationManager()
+            data_ingestion_config = config.get_data_ingestion_config()
 
-        # Pass the data ingestion configuration obj to the Data Ingestion component
-        data_ingestion = DataIngestion(config=data_ingestion_config)
-        data_ingestion.save_data()
+            # Pass the data ingestion configuration obj to the Data Ingestion component
+            data_ingestion = DataIngestion(config=data_ingestion_config)
+            data_ingestion.save_data()
+        except Exception as e:
+            raise CustomException(e, sys)
 
 
     
