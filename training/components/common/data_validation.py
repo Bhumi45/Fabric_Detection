@@ -70,7 +70,7 @@ class DataValidation:
             logging.info(status_message)
 
         except Exception as e:
-            logging.info(f"Error occurred during data validation: {str(e)}")
+            logging.error(f"Error occurred during data validation: {str(e)}")
             with open(self.config.STATUS_FILE, "w") as status_file:
                 status_file.write(f"Data Validation failed due to an error: {str(e)}")
             raise CustomException(e, sys)
