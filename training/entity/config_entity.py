@@ -34,7 +34,8 @@ class FeatureExtractionConfig:
 @dataclass(frozen=True)
 class FeatureEngineeringConfig:
     root_dir: Path
-    data_dir: Path
+    train_data_path: Path
+    test_data_path: Path
     STATUS_FILE: str
 
 #6
@@ -44,11 +45,13 @@ class ModelTrainerConfig:
     root_dir: Path
     train_data_path: Path
     test_data_path: Path
+    best_cross_val_models_rf: Path
     model_name: str
+    STATUS_FILE: str
     #Hyperparameters
-    alpha: float
-    l1_ratio: float
-    target_column: str
+    #alpha: float
+    #l1_ratio: float
+    #target_column: str
 #7
 @dataclass(frozen=True)
 class ModelEvaluationConfig:
