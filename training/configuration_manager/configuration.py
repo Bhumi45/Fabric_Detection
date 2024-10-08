@@ -98,7 +98,8 @@ class ConfigurationManager:
             root_dir = config.root_dir,
             train_data_path=config.train_data_path,
             test_data_path=config.test_data_path,
-            best_cross_val_models_rf= config.best_cross_val_models_rf,
+            metric_file_name_rf=config.metric_file_name_rf,
+            best_model_params_rf=config.best_model_params_rf,
             final_model_name=config.final_model_name,
             STATUS_FILE= config.STATUS_FILE
         )
