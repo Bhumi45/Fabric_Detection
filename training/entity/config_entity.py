@@ -45,7 +45,7 @@ class ModelTrainerConfig:
     root_dir: Path
     train_data_path: Path
     test_data_path: Path
-    best_cross_val_models_rf: Path
+    #best_cross_val_models_rf: Path
     final_model_name: str
     metric_file_name_rf: Path
     best_model_params_rf: Path

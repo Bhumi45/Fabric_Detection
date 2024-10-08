@@ -59,7 +59,7 @@ class ModelTraining:
     def load_best_model(self):
         best_f1_score = -1  # Initialize with a very low value
         best_model_file = None
-        loop_count = 1 
+        loop_count = 0 
 
         directory_path = self.config.metric_file_name_rf
         # Loop through all files in the directory
@@ -81,9 +81,6 @@ class ModelTraining:
 
         # Return the best model's loop count
         return loop_count
-
-
-
 
     def select_best_model(self,X_test,y_test):
 
@@ -133,12 +130,11 @@ class ModelTraining:
         # Construct the full path to the hyperparameters file
         hyperparams_file_path = os.path.join(hyperparams_directory, hyperparams_file)
         
-        # Check if the file exists
-        if os.path.exists(hyperparams_file_path):
-            # Load the hyperparameters from the JSON file
-            with open(hyperparams_file_path, 'r') as f:
-                hyperparams = json.load(f)
+        # Load the hyperparameters from the JSON file
+        with open(hyperparams_file_path, 'r') as f:
+            hyperparams = json.load(f)
 
+        hyperparams = self.filter_hyperparams(hyperparams)
 
         logging.info(hyperparams)
 
@@ -162,5 +158,13 @@ class ModelTraining:
             f.write(f"Final Model status: {True}")
 
         logging.info("Successfully saved the final model for Final Training...")
+
+    @staticmethod
+    def filter_hyperparams(params):
+      # Extract only the parameters related to the classifier (RandomForestClassifier)
+      rf_hyperparams = {key.replace('classifier__', ''): value for key, value in params.items() if key.startswith('classifier__')}
+      return rf_hyperparams
+
+    
 
         

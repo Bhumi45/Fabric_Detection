@@ -169,3 +169,4 @@ artifacts/feature_extraction/*.npz
 
 artifacts/feature_engineering/*.npz
 artifacts/nested_cross_val/
+artifacts/model_trainer/final_model.joblib
