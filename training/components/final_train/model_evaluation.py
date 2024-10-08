@@ -32,6 +32,14 @@ class ModelEvaluation:
 
         return X_test, y_test
 
+
+    def load_final_model(self):
+        final_model_path = self.config.model_path
+
+        final_model = load(final_model_path)
+
+        return final_model
+    
     def evaluate_final_model(self, final_model,X_test,y_test):
         logging.info("Evaluating final model...")
 
