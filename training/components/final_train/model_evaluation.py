@@ -52,8 +52,8 @@ class ModelEvaluation:
 
         # Generate classification report as a dictionary to save as metrics.json
         report_dict = classification_report(y_test, y_pred, output_dict=True)
-
-        with open(self.config.metric_file_name, 'w') as f:
+        metric_file_name = os.path.join(self.config.metric_file,"metrics.json")
+        with open(metric_file_name, 'w') as f:
             json.dump(report_dict, f, indent=4)
 
 

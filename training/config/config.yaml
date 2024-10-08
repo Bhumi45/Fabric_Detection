@@ -53,12 +53,13 @@ model_evaluation:
   root_dir: artifacts/model_evaluation
   test_data_path: artifacts/feature_engineering
   model_path: artifacts/model_trainer/final_model.joblib
-  metric_file_name: artifacts/model_evaluation/metrics.json
+  metric_file: artifacts/model_evaluation/metrics
   STATUS_FILE: artifacts/model_evaluation/status.txt
 
 
 
-  image_processing:
+  
+image_processing:
   root_dir: artifacts/image_processing
   data_dir: artifacts/data_ingestion/fabric_data
   STATUS_FILE: artifacts/image_processing/status.txt
