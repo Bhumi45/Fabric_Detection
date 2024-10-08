@@ -1,5 +1,6 @@
 import os
 import sys
+import json
 import pandas as pd
 import numpy as np
 from sklearn.pipeline import Pipeline
@@ -55,6 +56,35 @@ class ModelTraining:
         return X_train, X_test, y_train,y_test, groups_train
     
 
+    def load_best_model(self):
+        best_f1_score = -1  # Initialize with a very low value
+        best_model_file = None
+        loop_count = 1 
+
+        directory_path = self.config.metric_file_name_rf
+        # Loop through all files in the directory
+        for filename in os.listdir(directory_path):
+            if filename.endswith('.json'):  # Assuming metrics are stored in .json files
+                file_path = os.path.join(directory_path, filename)
+                with open(file_path, 'r') as f:
+                    metrics = json.load(f)  # Load the metrics from the JSON file
+
+                # Assuming 'macro avg' key contains the macro F1-score
+                macro_avg_f1_score = metrics['macro avg']['f1-score']
+                
+                loop_count += 1  # Increment the loop count
+
+                # Compare the current model's F1-score with the best one found so far
+                if macro_avg_f1_score > best_f1_score:
+                    best_f1_score = macro_avg_f1_score
+                    best_model_file = filename
+
+        # Return the best model's loop count
+        return loop_count
+
+
+
+
     def select_best_model(self,X_test,y_test):
 
         logging.info("Selecting the best model for Final Training...")
@@ -92,12 +122,27 @@ class ModelTraining:
         # Return the best model's hyperparameters 
         return best_model.get_params()
 
-    def train_final_model(self,best_model_params, X_train, y_train):
+    def train_final_model(self,loop_count, X_train, y_train):
 
         logging.info("Training the final model for Final Training...")
+
         # Initialize a new RandomForestClassifier with the best hyperparameters
-        logging.info(best_model_params)
-        final_model = RandomForestClassifier(**best_model_params)
+        hyperparams_file = f'best_params_rf_{loop_count}.json'
+        hyperparams_directory = self.config.best_model_params_rf
+    
+        # Construct the full path to the hyperparameters file
+        hyperparams_file_path = os.path.join(hyperparams_directory, hyperparams_file)
+        
+        # Check if the file exists
+        if os.path.exists(hyperparams_file_path):
+            # Load the hyperparameters from the JSON file
+            with open(hyperparams_file_path, 'r') as f:
+                hyperparams = json.load(f)
+
+
+        logging.info(hyperparams)
+
+        final_model = RandomForestClassifier(**hyperparams)
 
         final_model.fit(X_train,y_train)
 
