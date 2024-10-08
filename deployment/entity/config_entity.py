@@ -5,7 +5,7 @@ from pathlib import Path
 @dataclass(frozen=True)
 class DataIngestionConfig:
     root_dir: Path
-    source: Path
+    #source: Path
     data_dir: Path
     STATUS_FILE: str
 #2
@@ -20,6 +20,7 @@ class DataValidationConfig:
 class ImageProcessingConfig:
     root_dir: Path
     data_dir: Path
+    processed_images: Path
     STATUS_FILE: str
 
 #4

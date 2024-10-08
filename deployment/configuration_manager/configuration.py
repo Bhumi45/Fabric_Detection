@@ -26,13 +26,13 @@ class ConfigurationManager:
 #1
     def get_data_ingestion_config(self) -> DataIngestionConfig:
         config = self.config.data_ingestion
-        
-
+    
         create_directories([config.root_dir])
+        create_directories([config.data_dir])
         
         data_ingestion_config = DataIngestionConfig(
             root_dir=config.root_dir,
-            source=config.source,
+            #source=config.source,
             data_dir=config.data_dir,
             STATUS_FILE=config.STATUS_FILE
         )
@@ -55,10 +55,12 @@ class ConfigurationManager:
     def get_image_processing_config(self) -> ImageProcessingConfig:
         config = self.config.image_processing
         create_directories([config.root_dir])
+        create_directories([config.processed_images])
 
         image_processing_config = ImageProcessingConfig(
             root_dir = config.root_dir,
-            data_path=config.data_dir,
+            data_dir=config.data_dir,
+            processed_images=config.processed_images,
             STATUS_FILE=config.STATUS_FILE
         )
 
