@@ -165,11 +165,7 @@ def get_model_loader_config(self) -> ModelLoaderConfig :
 
         model_loader_config = ModelLoaderConfig(
             root_dir = config.root_dir,
-            train_data_path=config.train_data_path,
-            test_data_path=config.test_data_path,
-            metric_file_name_rf=config.metric_file_name_rf,
-            best_model_params_rf=config.best_model_params_rf,
-            final_model_name=config.final_model_name,
+            model_path= config.model_path,
             STATUS_FILE= config.STATUS_FILE
         )
 
@@ -178,17 +174,14 @@ def get_model_loader_config(self) -> ModelLoaderConfig :
 #10
 
 def get_prediction_config(self) -> PredictionConfig :        
-        config = self.config.model_trainer
+        config = self.config.prediction
 
         create_directories([config.root_dir])
 
         prediction_config = PredictionConfig(
             root_dir = config.root_dir,
-            train_data_path=config.train_data_path,
-            test_data_path=config.test_data_path,
-            metric_file_name_rf=config.metric_file_name_rf,
-            best_model_params_rf=config.best_model_params_rf,
-            final_model_name=config.final_model_name,
+            model_path= config.model_path,
+            data_dir= config.data_dir,
             STATUS_FILE= config.STATUS_FILE
         )
 
