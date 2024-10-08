@@ -21,7 +21,7 @@ class FeatureEngineeringTrainingPipeline:
             X_train, X_test, y_train, y_test, groups_train = feature_engineering.transform_features()
 
             # Saving the transformed data only if if does not exist
-            if not X_train != None:
+            if X_train != None:
               feature_engineering.save_transformed_data(X_train,X_test, y_train, y_test, groups_train)
         except Exception as e:
             raise CustomException(e, sys)
