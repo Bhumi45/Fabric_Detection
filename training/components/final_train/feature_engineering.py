@@ -1,5 +1,6 @@
 import os
 import sys
+import joblib
 import pandas as pd
 import numpy as np
 from sklearn.pipeline import Pipeline
@@ -39,6 +40,12 @@ class FeatureEngineering:
                   ("pca",PCA(n_components=None))
               ])
         transform_pipeline.fit(X_train)
+
+        # Save the pipeline
+        pipeline_path = os.path.join(self.config.root_dir,"pipeline.joblib")
+        joblib.dump(transform_pipeline, pipeline_path)
+  
+
         X_train = transform_pipeline.transform(X_train)
         X_test = transform_pipeline.transform(X_test)
 

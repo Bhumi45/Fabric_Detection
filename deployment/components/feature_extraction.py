@@ -113,7 +113,7 @@ class FeatureExtraction:
         logging.info(f"Dtype of X: {X.dtype}")
         logging.info(f"Shape of X: {X.shape}")
         # Save each array as a separate .npz file
-        np.savez(os.path.join(save_dir, 'X.npz'), data=X)
+        np.savez(os.path.join(save_dir, 'X.npz'), X=X)
 
         logging.info(f"Features has been saved to {save_dir}")
 
