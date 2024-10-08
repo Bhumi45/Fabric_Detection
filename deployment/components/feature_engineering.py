@@ -34,7 +34,7 @@ class FeatureEngineering:
         logging.info("Features are now BEING transformed")
 
 
-        pipeline_path = os.path.join(self.config.pipeline,"pipeline.joblib")
+        pipeline_path = self.config.pipeline
         transform_pipeline = joblib.load(pipeline_path)
         
         X = transform_pipeline.transform(X)
