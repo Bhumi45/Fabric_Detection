@@ -43,8 +43,8 @@ class ModelTraining:
         test_data_path = os.path.join(self.config.test_data_path,"Test.npz")
 
         # Loading the train and test .npz files
-        train_data = np.load(train_data_path)
-        test_data = np.load(test_data_path)
+        train_data = np.load(train_data_path,allow_pickle=True)
+        test_data = np.load(test_data_path, allow_pickle=True)
 
         # Access the arrays stored inside the .npz files
         X_train, y_train, groups_train = train_data["X_train"], train_data["y_train"], train_data["groups_train"]
@@ -74,7 +74,10 @@ class ModelTraining:
             model = load(model_path)
             
             # Make predictions on the validation data
-            y_pred = model.predict(self.X_test)
+            logging.info(f"shape of X_test {X_test.shape}")
+            logging.info(f"Type of X_test: {type(X_test)}")
+            logging.info(f"Dtype of X_test : {X_test.dtype}")
+            y_pred = model.predict(X_test)
             
             # Compute the macro average F1 score
             f1 = f1_score(y_test, y_pred, average='macro')
