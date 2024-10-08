@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, flash, redirect, url_for, send_from_directory
+from utils.common import delete_artifacts_folder
 from werkzeug.utils import secure_filename
 import os
 import numpy as np
@@ -104,10 +105,13 @@ def prediction():
 
             predicted_label = prediction_result.get('label', 'Unknown')
             
+            delete_artifacts_folder()
+            
             # Show the image along with the label
             return render_template("prediction_result.html", filename=filename, label=predicted_label)
         else:
             flash('File is not an image or invalid format. Please upload a .png, .jpg, or .jpeg file.')
+            delete_artifacts_folder()
             return redirect(request.url)
     
     return render_template("upload_image.html")

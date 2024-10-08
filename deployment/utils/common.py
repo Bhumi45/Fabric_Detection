@@ -9,6 +9,7 @@ from typing import Any
 from box import ConfigBox
 from exception import CustomException
 from logger import logging
+import shutil
 
 
 @ensure_annotations
@@ -102,3 +103,20 @@ def get_size(path: Path) -> str:
     """
     size_in_gb = round(os.path.getsize(path)/(1024 ** 3), 2)
     return f"{size_in_gb} GB"
+
+
+import os
+
+def delete_artifacts_folder():
+    folder_path = 'artifacts_deployment'
+
+    try:
+        # Check if the folder exists
+        if os.path.exists(folder_path):
+            # Remove the folder and all its contents
+            shutil.rmtree(folder_path)
+            print(f"Deleted the folder: {folder_path}")
+        else:
+            print(f"Folder not found: {folder_path}")
+    except Exception as e:
+        raise CustomException(e,sys)
