@@ -46,7 +46,7 @@ class ModelTrainerConfig:
     train_data_path: Path
     test_data_path: Path
     best_cross_val_models_rf: Path
-    model_name: str
+    final_model_name: str
     STATUS_FILE: str
     #Hyperparameters
     #alpha: float

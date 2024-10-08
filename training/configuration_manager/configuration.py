@@ -99,7 +99,7 @@ class ConfigurationManager:
             train_data_path=config.train_data_path,
             test_data_path=config.test_data_path,
             best_cross_val_models_rf= config.best_cross_val_models_rf,
-            model_name=config.model_name,
+            final_model_name=config.final_model_name,
             STATUS_FILE= config.STATUS_FILE
         )
 
