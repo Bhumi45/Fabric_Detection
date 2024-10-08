@@ -17,8 +17,8 @@ class Prediction:
 
     def load_model(self) :
         try:
-            logging.info(f"Loading model from {self.config.model_file_path}")
-            model_file_path = self.config.model_file_path
+            logging.info(f"Loading model from {self.config.model_path}")
+            model_file_path = self.config.model_path
             model = joblib.load(model_file_path)
             return model
         except Exception as e:

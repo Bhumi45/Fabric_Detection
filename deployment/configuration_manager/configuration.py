@@ -157,32 +157,32 @@ class ConfigurationManager:
         return nested_cross_val_config
     
 
-#9
-def get_model_loader_config(self) -> ModelLoaderConfig :        
-        config = self.config.model_trainer
+    #9
+    def get_model_loader_config(self) -> ModelLoaderConfig :        
+            config = self.config.model_trainer
 
-        create_directories([config.root_dir])
+            create_directories([config.root_dir])
 
-        model_loader_config = ModelLoaderConfig(
-            root_dir = config.root_dir,
-            model_path= config.model_path,
-            STATUS_FILE= config.STATUS_FILE
-        )
+            model_loader_config = ModelLoaderConfig(
+                root_dir = config.root_dir,
+                model_path= config.model_path,
+                STATUS_FILE= config.STATUS_FILE
+            )
 
-        return model_loader_config
+            return model_loader_config
 
-#10
+    #10
 
-def get_prediction_config(self) -> PredictionConfig :        
-        config = self.config.prediction
+    def get_prediction_config(self) -> PredictionConfig :        
+            config = self.config.prediction
 
-        create_directories([config.root_dir])
+            create_directories([config.root_dir])
 
-        prediction_config = PredictionConfig(
-            root_dir = config.root_dir,
-            model_path= config.model_path,
-            data_dir= config.data_dir,
-            STATUS_FILE= config.STATUS_FILE
-        )
+            prediction_config = PredictionConfig(
+                root_dir = config.root_dir,
+                model_path= config.model_path,
+                data_dir= config.data_dir,
+                STATUS_FILE= config.STATUS_FILE
+            )
 
-        return prediction_config
+            return prediction_config

@@ -54,7 +54,7 @@ prediction:
   root_dir: artifacts_deployment/prediction
   data_dir: artifacts_deployment/feature_engineering/X.npz
   model_path: artifacts/model_trainer/final_model.joblib
-  STATUS_FILE: artifacts/model_trainer/status.txt
+  STATUS_FILE: artifacts_deployment/model_trainer/status.txt
 
 model_evaluation:
   root_dir: artifacts/model_evaluation
