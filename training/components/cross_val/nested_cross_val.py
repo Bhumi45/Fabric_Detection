@@ -28,6 +28,17 @@ class NestedCrossVal:
     def __init__(self, config: NestedCrossValConfig) -> None:
         self.config = config
 
+    @staticmethod
+    def is_json_serializable(value):
+      """
+      Check if a value is JSON serializable.
+      """
+      try:
+          json.dumps(value)
+          return True
+      except (TypeError, OverflowError):
+          return False
+
     def get_data_labels_groups(self) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
         """Loads the extracted features, labels and groups .
             Returns the extracted features, labels and groups : X,y and groups
@@ -209,7 +220,7 @@ class NestedCrossVal:
         report_dict = classification_report(y_outer_val, y_outer_val_pred_rf, output_dict=True)
 
         # Saving the metrics as a json file
-        metric_file_path = os.path.join(self.config.metric_file_name, f'metrics_rf_{count}.json')
+        metric_file_path = os.path.join(self.config.metric_file_name_rf, f'metrics_rf_{count}.json')
         with open(metric_file_path, 'w') as f:
             json.dump(report_dict, f, indent=4)
 
@@ -217,6 +228,7 @@ class NestedCrossVal:
         # Saving the best model params as a json file
         best_model_rf_params_path = os.path.join(self.config.best_model_params_rf, f'best_params_rf_{count}.json')
         best_model_rf_params = best_model_rf.get_params()
+        serializable_params = {k: v for k, v in best_model_rf_params.items() if self.is_json_serializable(v)}
         
         with open(best_model_rf_params_path, 'w') as f:
-            json.dump(best_model_rf_params, f, indent=4)
+            json.dump(serializable_params, f, indent=4)
