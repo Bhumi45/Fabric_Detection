@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Nested Cross Validation</title>
+</head>
+<body>
+
+<h2>Run Nested Cross Validation</h2>
+<form method="POST">
+    <button type="submit" name="run_cross_validation">Run Nested Cross Validation</button>
+</form>
+
+{% if messages %}
+    <h3>{{ messages }}</h3>
+    <form method="POST">
+        <button type="submit" name="train_final_model">Train the model on the entire training data</button>
+    </form>
+{% endif %}
+
+</body>
+</html>

@@ -8,6 +8,7 @@ from logger import logging
 from exception import CustomException
 import sys
 import os
+import json
 
 # ASSUMING THAT ONCE THE NESTED CROSS VALIDATION PIPELINE IS RUN THEN ONLY WE ARE RUNNING THIS PIPELINE
 # OTHERWISE THIS PIPELINE WILL CRASH
@@ -57,8 +58,22 @@ PIPELINE = "Prediction Pipeline"
 try:
     logging.info(f">>>>> {PIPELINE} started <<<<")
     prediction = PredictionPipeline()
-    prediction.main()
+
+    # Assuming main() returns the predicted class number
+    predicted_value = prediction.main()
+    category_mapping = {1: 'corduroy', 2: 'denim', 3: 'lenin'}
+    predicted_label = category_mapping.get(predicted_value, "Unknown")
+
+    # Save the predicted label to a JSON file
+    output = {
+        'label': predicted_label
+    }
+
+    with open("artifacts_deployment/prediction/prediction_result.json", "w") as json_file:
+        json.dump(output, json_file)
+
     logging.info(f">>>>>>>> {PIPELINE} completed <<<<<<<<<")
+
 except Exception as e:
     logging.error(e)
-    raise CustomException(e,sys)
+    raise CustomException(e, sys)

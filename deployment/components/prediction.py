@@ -45,5 +45,5 @@ if __name__ == "__main__":
     model = prediction.load_model()
     prediction = prediction.predict(model)
     
-    # return prediction to API
+    # return prediction 
 
