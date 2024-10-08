@@ -75,3 +75,5 @@ class NestedCrossValConfig:
     test_data_path: Path
     model_name: str
     STATUS_FILE: str
+    metric_file_name_rf: Path
+    best_model_params_rf: Path

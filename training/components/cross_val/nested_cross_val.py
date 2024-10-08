@@ -8,6 +8,7 @@ import sys
 import cv2
 from joblib import dump
 from joblib import load
+import json
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -98,8 +99,11 @@ class NestedCrossVal:
         # Performing RandomSearchCV for RF
         random_search_rf = self.randomized_search_rf(count,pipeline_rf,param_grid_rf,inner_cv,X_outer_train,y_outer_train,groups_outer_train)
         best_model_rf = self.get_best_model_rf(random_search_rf)
-        self.evaluate_best_model_rf(best_model_rf=best_model_rf, X_outer_val=X_outer_val, y_outer_val=y_outer_val)
+        self.evaluate_best_model_rf(count=count, best_model_rf=best_model_rf, X_outer_val=X_outer_val, y_outer_val=y_outer_val)
         dump(best_model_rf,f"{self.config.random_search_models_rf}/rf_{count}.joblib")
+
+        with open(self.config.STATUS_FILE, "a") as f:
+            f.write(f"Model {str(count)} saved\n")
         del best_model_rf
 
 
@@ -196,11 +200,23 @@ class NestedCrossVal:
         return best_model_rf
 
 
-    def evaluate_best_model_rf(self,best_model_rf,X_outer_val,y_outer_val):
+    def evaluate_best_model_rf(self,count,best_model_rf,X_outer_val,y_outer_val):
         """
         Evaluate Best Model from RandomizedSearch on Outer Validation Fold
         """
         y_outer_val_pred_rf = best_model_rf.predict(X_outer_val)
 
-        with open(self.config.STATUS_FILE,"a") as f:
-            f.write(classification_report(y_outer_val,y_outer_val_pred_rf)+"\n\n")
+        report_dict = classification_report(y_outer_val, y_outer_val_pred_rf, output_dict=True)
+
+        # Saving the metrics as a json file
+        metric_file_path = os.path.join(self.config.metric_file_name, f'metrics_rf_{count}.json')
+        with open(metric_file_path, 'w') as f:
+            json.dump(report_dict, f, indent=4)
+
+        
+        # Saving the best model params as a json file
+        best_model_rf_params_path = os.path.join(self.config.best_model_params_rf, f'best_params_rf_{count}.json')
+        best_model_rf_params = best_model_rf.get_params()
+        
+        with open(best_model_rf_params_path, 'w') as f:
+            json.dump(best_model_rf_params, f, indent=4)

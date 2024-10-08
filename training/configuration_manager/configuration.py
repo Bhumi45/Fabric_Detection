@@ -142,7 +142,9 @@ class ConfigurationManager:
             train_data_path = config.train_data_path,
             test_data_path= config.test_data_path,
             model_name = config.model_name,
-            STATUS_FILE= config.STATUS_FILE
+            STATUS_FILE= config.STATUS_FILE,
+            metric_file_name_rf= config.metric_file_name_rf,
+            best_model_params_rf= config.best_model_params_rf
         )
 
         return nested_cross_val_config
