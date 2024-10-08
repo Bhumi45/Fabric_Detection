@@ -96,6 +96,7 @@ class ModelTraining:
 
         logging.info("Training the final model for Final Training...")
         # Initialize a new RandomForestClassifier with the best hyperparameters
+        logging.info(best_model_params)
         final_model = RandomForestClassifier(**best_model_params)
 
         final_model.fit(X_train,y_train)
