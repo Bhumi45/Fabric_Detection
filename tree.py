@@ -18,6 +18,6 @@ def list_files(startpath, exclude_folders=None):
 
 # Specify your project directory and the folders you want to exclude
 project_directory = '.'  # Change if needed\
-exclude_folders = ['Fabric_Detection_Project.egg-info', 'fabric_venv', 'laptop_notebooks',".git"]  # Add your virtual environment and image folders here
+exclude_folders = ['Fabric_Detection_Project.egg-info', "data","logs",'fabric_venv', 'laptop_notebooks',".git"]  # Add your virtual environment and image folders here
 
 list_files(project_directory, exclude_folders)

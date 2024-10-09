@@ -1,0 +1,23 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - echo "Installing system dependencies..."
+      - pip install --upgrade pip
+  pre_build:
+    commands:
+      - echo "Installing application dependencies..."
+      - pip install -r requirements.txt
+
+artifacts:
+  files:
+    - '**/*'  # Include all files
+  exclude:
+    - '**/__pycache__/**'  # Exclude __pycache__ directories
+    - '**/*.pyc'           # Exclude .pyc files
+    - '*.log'              # Exclude log files
+    - 'notebooks/**'       # Exclude notebooks if not needed
+    - 'artifacts/**'       # Exclude the artifacts folder
+    - 'artifacts_deployment/**'
+    - 'logs/**'  # Exclude the artifacts_deployment folder
