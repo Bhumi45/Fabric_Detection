@@ -18,7 +18,7 @@ class DataValidationPipeline:
 
             # Passing the data validation configuration obj to the component
             data_validation = DataValidation(config=data_validation_config)
-            data_validation.check_al_data_is_images()
+            data_validation.check_all_data_is_images()
         except Exception as e:
             raise CustomException(e, sys)
             

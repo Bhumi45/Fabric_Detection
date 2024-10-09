@@ -38,12 +38,12 @@ def nested_cross_validation():
     """
     if request.method == "POST":
         if 'run_cross_validation' in request.form:
-            subprocess.run(["python3", "../execute_cross_validation.py"])
+            subprocess.run(["python3", "execute_cross_validation.py"])
             flash("Nested cross-validation completed successfully.", "success")
             return redirect(url_for("nested_cross_validation"))
 
         elif 'train_final_model' in request.form:
-            subprocess.run(["python3", "../execute_final_model_training.py"])
+            subprocess.run(["python3", "execute_final_model_training.py"])
             flash("Model training on the entire dataset completed successfully.", "success")
             
             # Redirect to the route that shows the classification report
@@ -55,7 +55,7 @@ def nested_cross_validation():
 @app.route("/classification_report", methods=["GET"])
 def classification_report():
     # Load the classification report from the JSON file
-    with open("../artifacts/model_evaluation/metrics/metrics.json", "r") as json_file:
+    with open("artifacts/model_evaluation/metrics/metrics.json", "r") as json_file:
         classification_report = json.load(json_file)
 
     # Pass the report to the template for rendering
@@ -100,10 +100,10 @@ def prediction():
             file.save(file_path)
             
             # Run the prediction pipeline script
-            subprocess.run(["python3", "../execute_prediction_pipeline.py"])
+            subprocess.run(["python3", "execute_prediction_pipeline.py"])
 
             # Read the predicted label from the JSON file
-            with open("../artifacts_deployment/prediction/prediction_result.json", "r") as json_file:
+            with open("artifacts_deployment/prediction/prediction_result.json", "r") as json_file:
                 prediction_result = json.load(json_file)
 
             predicted_label = prediction_result.get('label', 'Unknown')
