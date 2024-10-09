@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, flash, redirect, url_for, send_from_directory
+from flask import Flask, render_template, request, flash, redirect, url_for, send_from_directory, session
 from deployment.utils.common import delete_artifacts_folder
 from werkzeug.utils import secure_filename
 import os
@@ -27,8 +27,11 @@ def index():
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
+
+    
 @app.route("/nested_cross_validation", methods=["GET", "POST"])
 def nested_cross_validation():
+  
     """
     On visiting this page a button should be shown to run the nested cross validation.
     If pressed then execute_cross_validation.py among other things.
@@ -36,30 +39,29 @@ def nested_cross_validation():
     After the nested cross validation is done then another button should ask whether the user wants to train the model on the entire training data or not.
     If yes then execute_final_model_training.py
     """
-    
-    completed_cv = False  # Variable to track cross-validation completion
-
     if request.method == "POST":
         if 'run_cross_validation' in request.form:
             # Run cross-validation
-            subprocess.run(["python3", "../execute_cross_validation.py"])
+            subprocess.run(["python3", "execute_cross_validation.py"])
             flash("Nested cross-validation completed successfully.", "success")
-            completed_cv = True  # Set this to True when cross-validation completes
+            session['completed_cv'] = True  # Store the state in the session
             return redirect(url_for("nested_cross_validation"))
         
         elif 'train_final_model' in request.form:
             # Run final model training
-            subprocess.run(["python3", "../execute_final_model_training.py"])
+            subprocess.run(["python3", "execute_final_model_training.py"])
             flash("Model training on the entire dataset completed successfully.", "success")
+            session['completed_cv'] = False  # Reset the state after training
             return redirect(url_for("classification_report"))
 
+    # Retrieve the session value
+    completed_cv = session.get('completed_cv', False)
     return render_template("nested_cross_validation.html", completed_cv=completed_cv)
-
 
 @app.route("/classification_report", methods=["GET"])
 def classification_report():
     # Load the classification report from the JSON file
-    with open("../artifacts/model_evaluation/metrics/metrics.json", "r") as json_file:
+    with open("artifacts/model_evaluation/metrics/metrics.json", "r") as json_file:
         classification_report = json.load(json_file)
 
     # Pass the report to the template for rendering
@@ -104,10 +106,10 @@ def prediction():
             file.save(file_path)
             
             # Run the prediction pipeline script
-            subprocess.run(["python3", "../execute_prediction_pipeline.py"])
+            subprocess.run(["python3", "execute_prediction_pipeline.py"])
 
             # Read the predicted label from the JSON file
-            with open("../artifacts_deployment/prediction/prediction_result.json", "r") as json_file:
+            with open("artifacts_deployment/prediction/prediction_result.json", "r") as json_file:
                 prediction_result = json.load(json_file)
 
             predicted_label = prediction_result.get('label', 'Unknown')
