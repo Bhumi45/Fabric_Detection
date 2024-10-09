@@ -42,14 +42,14 @@ def nested_cross_validation():
     if request.method == "POST":
         if 'run_cross_validation' in request.form:
             # Run cross-validation
-            subprocess.run(["python3", "execute_cross_validation.py"])
+            subprocess.run(["python", "execute_cross_validation.py"])
             flash("Nested cross-validation completed successfully.", "success")
             session['completed_cv'] = True  # Store the state in the session
             return redirect(url_for("nested_cross_validation"))
         
         elif 'train_final_model' in request.form:
             # Run final model training
-            subprocess.run(["python3", "execute_final_model_training.py"])
+            subprocess.run(["python", "execute_final_model_training.py"])
             flash("Model training on the entire dataset completed successfully.", "success")
             session['completed_cv'] = False  # Reset the state after training
             return redirect(url_for("classification_report"))
