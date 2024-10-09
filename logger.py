@@ -3,7 +3,7 @@ import os
 from datetime import datetime
 
 # Fixed log directory inside the Elastic Beanstalk environment
-log_dir = "/var/app/current/logs"
+log_dir = "logs"
 
 # Ensure the logs directory exists
 os.makedirs(log_dir, exist_ok=True)
