@@ -22,45 +22,33 @@ def allowed_file(filename):
 def index():
     return render_template("index.html")
 
-@app.route("/predict", methods=["GET", "POST"])
+@app.route("/predict", methods=["POST"])
 def prediction():
     if request.method == "POST":
-        # Check if the post request has the file part
-        if 'file' not in request.files:
-            flash('No file part')
-            return redirect(request.url)
-
         file = request.files['file']
-
-        # Check if the user uploaded an image
-        if file.filename == '':
-            flash('No selected file')
-            return redirect(request.url)
-
-        # Check if the file is an allowed image file
         if file and allowed_file(file.filename):
-            img = Image.open(BytesIO(file.read()))  # Process image in memory
+            # Load the image in memory (Pillow)
+            img = Image.open(BytesIO(file.read()))
 
-            # Run the prediction pipeline script and capture the output
-            result = subprocess.run(["python3", "execute_prediction_pipeline.py"], capture_output=True, text=True)
-            
-            # Parse the JSON output from the prediction script
-            #WILL CHANGE IT SOON
-            prediction_result = json.loads(result.stdout)
-            predicted_label = prediction_result.get('label', 'Unknown')
+            # Convert Pillow image to OpenCV format (NumPy array)
+            img = np.array(img)
 
-            delete_artifacts_folder()
+            # If the image has an alpha channel, remove it
+            if img.shape[-1] == 4:
+                img = cv2.cvtColor(img, cv2.COLOR_RGBA2RGB)
 
-            # Show the result on the prediction page
+            # Create the PredictionPipeline object and pass the image to it
+            prediction_pipeline = PredictionPipeline()
+            predicted_label = prediction_pipeline.main(img)  # Pass the in-memory image
+
+            # Show the result
             return render_template("predict.html", label=predicted_label)
 
         else:
             flash('File is not an image or invalid format. Please upload a .png, .jpg, or .jpeg file.')
-            delete_artifacts_folder()
             return redirect(request.url)
 
     return render_template("upload_image.html")
-
 
 if __name__ == "__main__":
     app.run(debug=True, port=5000)

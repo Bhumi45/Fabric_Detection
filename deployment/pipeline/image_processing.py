@@ -13,12 +13,8 @@ class ImageProcessingPipeline:
 
     def main(self):
         try:
-            config = ConfigurationManager()
-            image_processing_config = config.get_image_processing_config()
-            image_processing = ImageProcessing(config=image_processing_config)
-            
-            image = image_processing.process_uploaded_image()
-            image_processing.save_image(image)
+            image_processing = ImageProcessing()
+            image = image_processing.process_image()
 
         except Exception as e:
             raise CustomException(e, sys)

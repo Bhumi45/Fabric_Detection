@@ -1,23 +1,5 @@
 artifacts_root: artifacts_deployment
 
-data ingestion:
-  root_dir: artifacts_deployment/data_ingestion
-  data_dir: artifacts_deployment/data_ingestion/uploaded_images
-  #source: data/textures 3
-  STATUS_FILE: artifacts_deployment/data_ingestion/status.txt
-
-image_processing:
-  root_dir: artifacts_deployment/image_processing
-  data_dir: artifacts_deployment/data_ingestion/uploaded_images
-  processed_images: artifacts_deployment/image_processing/processed_images
-  STATUS_FILE: artifacts_deployment/image_processing/status.txt
-
-data validation:
-  root_dir: artifacts_deployment/data_validation
-  data_dir: artifacts_deployment/data_ingestion/fabric_data
-  STATUS_FILE: artifacts_deployment/data_validation/status.txt  # status of data validation 
-
-
 feature_extraction:
   root_dir: artifacts_deployment/feature_extraction
   data_dir: artifacts_deployment/image_processing/processed_images

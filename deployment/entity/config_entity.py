@@ -2,7 +2,7 @@ from dataclasses import dataclass
 from pathlib import Path 
 
 #1
-@dataclass(frozen=True)
+"""@dataclass(frozen=True)
 class DataIngestionConfig:
     root_dir: Path
     #source: Path
@@ -22,7 +22,7 @@ class ImageProcessingConfig:
     data_dir: Path
     processed_images: Path
     STATUS_FILE: str
-
+"""
 #4
 @dataclass(frozen=True)
 class FeatureExtractionConfig:

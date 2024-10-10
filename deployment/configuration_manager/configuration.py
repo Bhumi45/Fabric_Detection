@@ -24,7 +24,7 @@ class ConfigurationManager:
 
         create_directories([self.config.artifacts_root])
 #1
-    def get_data_ingestion_config(self) -> DataIngestionConfig:
+    """def get_data_ingestion_config(self) -> DataIngestionConfig:
         config = self.config.data_ingestion
     
         create_directories([config.root_dir])
@@ -36,7 +36,7 @@ class ConfigurationManager:
             data_dir=config.data_dir,
             STATUS_FILE=config.STATUS_FILE
         )
-        return data_ingestion_config
+        return data_ingestion_config"""
 #2    
     def get_data_validation_config(self) -> DataValidationConfig:
         config= self.config.data_validation
@@ -52,7 +52,7 @@ class ConfigurationManager:
 
         return data_validation_config
  #3   
-    def get_image_processing_config(self) -> ImageProcessingConfig:
+    """def get_image_processing_config(self) -> ImageProcessingConfig:
         config = self.config.image_processing
         create_directories([config.root_dir])
         create_directories([config.processed_images])
@@ -64,7 +64,7 @@ class ConfigurationManager:
             STATUS_FILE=config.STATUS_FILE
         )
 
-        return image_processing_config
+        return image_processing_config"""
 #4    
     def get_feature_extraction_config(self) -> FeatureExtractionConfig:
         config = self.config.feature_extraction
