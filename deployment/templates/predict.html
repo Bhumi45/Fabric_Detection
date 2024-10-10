@@ -8,8 +8,7 @@
 <h2>Prediction Result</h2>
 <p><strong>Predicted Label:</strong> {{ label }}</p>
 
-<!-- Display the uploaded image -->
-<img src="{{ url_for('uploaded_file', filename=filename) }}" alt="Uploaded Image">
+<!-- Since we're not storing images, we don't display the uploaded image -->
 
 </body>
 </html>

@@ -6,14 +6,17 @@
 <body>
 
 <h2>Upload an Image for Prediction</h2>
+
+<!-- Form to upload image -->
 <form method="POST" enctype="multipart/form-data">
-    <input type="file" name="file">
+    <input type="file" name="file" accept="image/png, image/jpeg">
     <input type="submit" value="Upload and Predict">
 </form>
 
+<!-- Display flash messages, if any -->
 {% with messages = get_flashed_messages() %}
     {% if messages %}
-        <ul>
+        <ul style="color: red;">
             {% for message in messages %}
                 <li>{{ message }}</li>
             {% endfor %}
