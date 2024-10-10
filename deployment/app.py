@@ -24,14 +24,6 @@ def index():
 
 @app.route("/predict", methods=["GET", "POST"])
 def prediction():
-    """
-    This page allows the user to upload an image file with a suitable format (.png, .jpg, .jpeg)
-    and checks whether the file is an image or not.
-    
-    If the file is an image, it is processed in memory (RAM) using Pillow.
-    Then we execute the "execute_prediction_pipeline.py" file, return the prediction,
-    and show the image along with the predicted label.
-    """
     if request.method == "POST":
         # Check if the post request has the file part
         if 'file' not in request.files:
@@ -40,32 +32,31 @@ def prediction():
 
         file = request.files['file']
 
-        # If the user does not select a file, browser might submit an empty file without a filename
+        # Check if the user uploaded an image
         if file.filename == '':
             flash('No selected file')
             return redirect(request.url)
 
         # Check if the file is an allowed image file
         if file and allowed_file(file.filename):
-            # Load image directly into memory
-            img = Image.open(BytesIO(file.read()))
+            img = Image.open(BytesIO(file.read()))  # Process image in memory
 
-            # Run the prediction pipeline script (assuming it uses the processed image)
-            subprocess.run(["python3", "execute_prediction_pipeline.py"])
-
-            # Read the predicted label from the JSON file
-            with open("artifacts_deployment/prediction/prediction_result.json", "r") as json_file:
-                prediction_result = json.load(json_file)
-
+            # Run the prediction pipeline script and capture the output
+            result = subprocess.run(["python3", "execute_prediction_pipeline.py"], capture_output=True, text=True)
+            
+            # Parse the JSON output from the prediction script
+            #WILL CHANGE IT SOON
+            prediction_result = json.loads(result.stdout)
             predicted_label = prediction_result.get('label', 'Unknown')
 
-            # delete_artifacts_folder() will not be needed since no artifacts to be created
+            delete_artifacts_folder()
 
-            # Show the image along with the label
+            # Show the result on the prediction page
             return render_template("predict.html", label=predicted_label)
+
         else:
             flash('File is not an image or invalid format. Please upload a .png, .jpg, or .jpeg file.')
-            #delete_artifacts_folder()
+            delete_artifacts_folder()
             return redirect(request.url)
 
     return render_template("upload_image.html")

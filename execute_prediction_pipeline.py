@@ -54,25 +54,26 @@ except Exception as e:
     raise CustomException(e,sys)
 
 
+# PREDICTION
 PIPELINE = "Prediction Pipeline"
 try:
     logging.info(f">>>>> {PIPELINE} started <<<<")
     prediction = PredictionPipeline()
 
-    # Assuming main() returns the predicted class number
-    predicted_value = prediction.main()
-    category_mapping = {1: 'corduroy', 2: 'denim', 3: 'lenin'}
+    # Get prediction from the model
+    predicted_value = prediction.main()  # Handle in-memory prediction
+    category_mapping = {1: 'corduroy', 2: 'denim', 3: 'linen'}
     predicted_label = category_mapping.get(predicted_value, "Unknown")
 
-    # Save the predicted label to a JSON file
-    output = {
-        'label': predicted_label
-    }
+    logging.info(f"Predicted Label: {predicted_label}")
 
-    with open("artifacts_deployment/prediction/prediction_result.json", "w") as json_file:
-        json.dump(output, json_file)
-
+    # Return the predicted label instead of saving it to a file
     logging.info(f">>>>>>>> {PIPELINE} completed <<<<<<<<<")
+    
+    # Return the label so it can be passed to the Flask app
+
+    # WE WILL NOT NEED JSON WILL REMOVE THIS SOON
+    print(json.dumps({'label': predicted_label}))  # Output for Flask
 
 except Exception as e:
     logging.error(e)
