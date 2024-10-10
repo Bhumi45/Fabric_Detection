@@ -1,8 +1,0 @@
-[2024-10-07 18:20:18,302] 161 numexpr.utils - INFO - NumExpr defaulting to 8 threads.
-[2024-10-07 18:20:19,938] 69 root - INFO - >>>>> Nested Cross Validation Training Pipeline started <<<<
-[2024-10-07 18:20:19,944] 26 root - INFO - yaml file: training/config/config.yaml loaded successfully as <class 'dict'>
-[2024-10-07 18:20:19,945] 26 root - INFO - yaml file: training/config/params.yaml loaded successfully as <class 'dict'>
-[2024-10-07 18:20:19,946] 26 root - INFO - yaml file: training/config/schema.yaml loaded successfully as <class 'dict'>
-[2024-10-07 18:20:19,946] 43 root - INFO - Created directory at: artifacts
-[2024-10-07 18:20:19,946] 43 root - INFO - Created directory at: artifacts/nested_cross_val
-[2024-10-07 18:20:21,251] 74 root - ERROR - Error occured in python script name [/content/Fabric_Detection/training/pipeline/cross_val/nested_cross_val.py] line number [33] error message[[Errno 2] No such file or directory: 'artifacts/nested_cross_val/data_for_final_train/Train.npz']
