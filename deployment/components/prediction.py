@@ -18,8 +18,8 @@ class Prediction:
         try:
             model_file_path = "artifacts/model_trainer/final_model.joblib"
             model = joblib.load(model_file_path)
-            prediction  = model.predict(transformed_features)
-
+            prediction  = model.predict(transformed_features)[0]
+            print(prediction)
             category_mapping = {1: 'corduroy', 2: 'denim', 3: 'linen'}
             predicted_label = category_mapping.get(prediction, "Unknown")
 

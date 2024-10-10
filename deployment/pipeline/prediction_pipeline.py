@@ -28,6 +28,7 @@ class PredictionPipeline:
 
 
 
+
             return predicted_label
         
         except Exception as e:

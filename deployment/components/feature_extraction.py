@@ -82,8 +82,9 @@ class FeatureExtraction:
 # Function to extract features from an image
 
     def extract_features(self,image):
+        gray=image
         # Ensure the image is in grayscale
-        gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+        #gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
         # Canny edge detection
         edges = self.extract_canny_edge_detection(gray)

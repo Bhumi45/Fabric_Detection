@@ -16,7 +16,7 @@ class FeatureEngineering:
 
         pipeline_path = "artifacts/feature_engineering/pipeline.joblib"
         transform_pipeline = joblib.load(pipeline_path)
-        
+        extracted_features= extracted_features.reshape((1,-1))
         transformed_features = transform_pipeline.transform(extracted_features)
             
         return transformed_features
