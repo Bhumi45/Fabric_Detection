@@ -1,11 +1,14 @@
 from flask import Flask, render_template, request, flash, redirect, url_for, session
 from deployment.utils.common import delete_artifacts_folder
+from deployment.pipeline.prediction_pipeline import PredictionPipeline
 from werkzeug.utils import secure_filename
 import os
 import json
 from io import BytesIO
 from PIL import Image
 import subprocess
+import cv2
+import numpy as np
 
 
 app = Flask(__name__)
@@ -16,6 +19,7 @@ ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 
 # Function to check if the uploaded file is an allowed image format
 def allowed_file(filename):
+
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 @app.route("/")
@@ -39,7 +43,7 @@ def prediction():
 
             # Create the PredictionPipeline object and pass the image to it
             prediction_pipeline = PredictionPipeline()
-            predicted_label = prediction_pipeline.main(img)  # Pass the in-memory image
+            predicted_label = prediction_pipeline.predict_label(img)  # Pass the in-memory image
 
             # Show the result
             return render_template("predict.html", label=predicted_label)
