@@ -4,6 +4,7 @@ phases:
   install:
     commands:
       - echo "Installing system dependencies..."
+      - yum install -y mesa-libGL mesa-libGL-devel mesa-libGLU libjpeg-turbo  # Install system-level dependencies
       - pip install --upgrade pip
   pre_build:
     commands:
