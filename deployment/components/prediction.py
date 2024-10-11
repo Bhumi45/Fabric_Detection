@@ -9,7 +9,7 @@ class Prediction:
     def __init__(self):
         self.s3_client = boto3.client('s3')
         self.bucket_name = 'fabric-artifact-storage'  # Your S3 bucket name
-        self.model_key = 'artifacts/model_trainer/final_model.joblib'  # S3 key for the final model file
+        self.model_key = 'final_model.joblib'  # S3 key for the final model file
         self.local_model_path = '/tmp/final_model.joblib'  # Temporary local path to save the model
 
     def download_model_from_s3(self):

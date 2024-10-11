@@ -9,7 +9,7 @@ class FeatureEngineering:
     def __init__(self):
         self.s3_client = boto3.client('s3')
         self.bucket_name = 'fabric-artifact-storage'
-        self.pipeline_key = 'artifacts/feature_engineering/pipeline.joblib'
+        self.pipeline_key = 'pipeline.joblib'
         self.local_pipeline_path = '/tmp/pipeline.joblib'
 
     def download_pipeline_from_s3(self):
