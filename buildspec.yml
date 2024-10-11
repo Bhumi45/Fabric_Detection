@@ -18,6 +18,5 @@ artifacts:
     - '**/*.pyc'           # Exclude .pyc files
     - '*.log'              # Exclude log files
     - 'notebooks/**'       # Exclude notebooks if not needed
-    - 'artifacts/**'       # Exclude the artifacts folder
     - 'artifacts_deployment/**'
     - 'logs/**'  # Exclude the artifacts_deployment folder
