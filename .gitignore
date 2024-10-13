@@ -168,3 +168,9 @@ laptop_notebooks/Extracted_features
 laptop_notebooks/textures 3
 laptop_notebooks/Tests/textures 3
 laptop_notebooks/Tests/Augmented_images
+artifacts/
+deployment/
+logs/
+training/
+laptop_notebooks/Feature Extraction Techniques Trials/textures 3
+laptop_notebooks/Feature Extraction Techniques Trials/Augmented_images
