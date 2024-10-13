@@ -1,0 +1,31 @@
+Fabric_Detection/
+    .gitignore
+    README.md
+    tree.py
+    tree_structure.txt
+    laptop_notebooks/
+        1. Feature Extra & Model training.ipynb
+        1. Model Training.ipynb
+        2. Feature Extraction.ipynb
+        2. Model Training RAPIDS.ipynb
+        3. model_training_effective.ipynb
+        cpu_gpu.ipynb
+        environment.yml
+        environment1.yml
+        library_installation.ipynb
+        Feature Extraction Techniques Trials/
+            Canny Edge Detection.ipynb
+            data_augmentation.ipynb
+            data_augmentation_1.ipynb
+            Gabor filter.ipynb
+            Local Binary Pattern.ipynb
+            SIFT.ipynb
+            .ipynb_checkpoints/
+                Canny Edge Detection-checkpoint.ipynb
+                Fourier Transform-checkpoint.ipynb
+                Gabor filter-checkpoint.ipynb
+                Local Binary Pattern-checkpoint.ipynb
+                SIFT-checkpoint.ipynb
+            Gabor Filters/
+                denim.ipynb
+                wool.ipynb
