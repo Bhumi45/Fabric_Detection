@@ -55,6 +55,7 @@ To analyze the **reasons** behind the poor performance of our models(both SVM & 
    - n_components=1000 & n_components=2000 had a cumulative variance of only 44% & 60% respectively.
    - n_components=3000 & n_components=4000 had a cumulative variance of 70% & 78% respectively.
    - Decided to go with at least n_components = 3000 and maximum n_components=4000 so that maximum information can be captured from our data.
-     
-3. Validated whether we need to narrow down the number of categories of fabrics used or not:
-   - 
+    
+3. Validated whether our choice of fabric categories is correct or not:
+   - We are originally using the following fabric categories for classification: cotton, corduroy, denim, wool & linen.
+   - On reiterating through our literature review, we realized that corduroy can be made from cotton, wool 
