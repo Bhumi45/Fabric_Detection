@@ -33,7 +33,7 @@ class Prediction:
             print(prediction)
 
             # Mapping prediction to category
-            category_mapping = {1: 'corduroy', 2: 'denim', 3: 'linen'}
+            category_mapping = {1: 'corduroy', 2: 'denim'}
             predicted_label = category_mapping.get(prediction, "Unknown")
 
             return predicted_label
