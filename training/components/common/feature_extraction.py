@@ -151,8 +151,8 @@ class FeatureExtraction:
             dataset_dir = self.config.data_dir 
             LABELS = self.config.schema
             categories = [x for x in LABELS.values()]
-
-            # Prepare dataset, labels, and groups
+            print(categories)
+            """# Prepare dataset, labels, and groups
             X = []
             y = []
             groups = []  # This will store the group IDs
@@ -204,7 +204,7 @@ class FeatureExtraction:
             logging.info("Feature extraction completed successfully")
             
             self.save_features(X, y, groups)
-
+"""
 
         except Exception as e:
             with open(self.config.STATUS_FILE, "w") as f:
