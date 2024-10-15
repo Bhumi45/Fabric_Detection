@@ -102,10 +102,10 @@ class FeatureExtraction:
     
     @staticmethod
     def encoder_labels(y):
-        categories = ['denim', 'corduroy','linen']
+        categories = ['denim', 'corduroy']
 
         # Create a dictionary for manual mapping
-        category_mapping = { 'corduroy': 1, 'denim': 2, 'lenin': 3}
+        category_mapping = { 'corduroy': 1, 'denim': 2}
 
         # Convert to pandas Series (optional if already in pandas)
         y_series = pd.Series(y)
