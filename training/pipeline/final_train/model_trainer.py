@@ -21,11 +21,11 @@ class ModelTrainingPipeline:
             # Loading the train data and test data for Final Training
             X_train, X_test, y_train,y_test, groups_train = model_trainer.load_transformed_data()
 
-            # Selecting the best model for Final Training
-            best_model_params = model_trainer.select_best_model(X_test,y_test)
+            # Load the naem of best of the models of NestedCrossVAlidation (This is actually the count of the model which is the best)
+            best_model_count = model_trainer.load_best_model() 
 
             # Training the final model for Final Training
-            final_model = model_trainer.train_final_model(best_model_params, X_train, y_train)
+            final_model = model_trainer.train_final_model(best_model_count, X_train, y_train)
 
             # Save the final model for Final Training
             model_trainer.save_final_model(final_model)

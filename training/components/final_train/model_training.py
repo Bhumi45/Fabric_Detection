@@ -1,5 +1,6 @@
 import os
 import sys
+import json
 import pandas as pd
 import numpy as np
 from sklearn.pipeline import Pipeline
@@ -43,8 +44,8 @@ class ModelTraining:
         test_data_path = os.path.join(self.config.test_data_path,"Test.npz")
 
         # Loading the train and test .npz files
-        train_data = np.load(train_data_path)
-        test_data = np.load(test_data_path)
+        train_data = np.load(train_data_path,allow_pickle=True)
+        test_data = np.load(test_data_path, allow_pickle=True)
 
         # Access the arrays stored inside the .npz files
         X_train, y_train, groups_train = train_data["X_train"], train_data["y_train"], train_data["groups_train"]
@@ -54,6 +55,32 @@ class ModelTraining:
 
         return X_train, X_test, y_train,y_test, groups_train
     
+
+    def load_best_model(self):
+        best_f1_score = -1  # Initialize with a very low value
+        best_model_file = None
+        loop_count = 0 
+
+        directory_path = self.config.metric_file_name_rf
+        # Loop through all files in the directory
+        for filename in os.listdir(directory_path):
+            if filename.endswith('.json'):  # Assuming metrics are stored in .json files
+                file_path = os.path.join(directory_path, filename)
+                with open(file_path, 'r') as f:
+                    metrics = json.load(f)  # Load the metrics from the JSON file
+
+                # Assuming 'macro avg' key contains the macro F1-score
+                macro_avg_f1_score = metrics['macro avg']['f1-score']
+                
+                loop_count += 1  # Increment the loop count
+
+                # Compare the current model's F1-score with the best one found so far
+                if macro_avg_f1_score > best_f1_score:
+                    best_f1_score = macro_avg_f1_score
+                    best_model_file = filename
+
+        # Return the best model's loop count
+        return loop_count
 
     def select_best_model(self,X_test,y_test):
 
@@ -74,7 +101,10 @@ class ModelTraining:
             model = load(model_path)
             
             # Make predictions on the validation data
-            y_pred = model.predict(self.X_test)
+            logging.info(f"shape of X_test {X_test.shape}")
+            logging.info(f"Type of X_test: {type(X_test)}")
+            logging.info(f"Dtype of X_test : {X_test.dtype}")
+            y_pred = model.predict(X_test)
             
             # Compute the macro average F1 score
             f1 = f1_score(y_test, y_pred, average='macro')
@@ -89,11 +119,26 @@ class ModelTraining:
         # Return the best model's hyperparameters 
         return best_model.get_params()
 
-    def train_final_model(self,best_model_params, X_train, y_train):
+    def train_final_model(self,loop_count, X_train, y_train):
 
         logging.info("Training the final model for Final Training...")
+
         # Initialize a new RandomForestClassifier with the best hyperparameters
-        final_model = RandomForestClassifier(**best_model_params)
+        hyperparams_file = f'best_params_rf_{loop_count}.json'
+        hyperparams_directory = self.config.best_model_params_rf
+    
+        # Construct the full path to the hyperparameters file
+        hyperparams_file_path = os.path.join(hyperparams_directory, hyperparams_file)
+        
+        # Load the hyperparameters from the JSON file
+        with open(hyperparams_file_path, 'r') as f:
+            hyperparams = json.load(f)
+
+        hyperparams = self.filter_hyperparams(hyperparams)
+
+        logging.info(hyperparams)
+
+        final_model = RandomForestClassifier(**hyperparams)
 
         final_model.fit(X_train,y_train)
 
@@ -113,5 +158,13 @@ class ModelTraining:
             f.write(f"Final Model status: {True}")
 
         logging.info("Successfully saved the final model for Final Training...")
+
+    @staticmethod
+    def filter_hyperparams(params):
+      # Extract only the parameters related to the classifier (RandomForestClassifier)
+      rf_hyperparams = {key.replace('classifier__', ''): value for key, value in params.items() if key.startswith('classifier__')}
+      return rf_hyperparams
+
+    
 
         

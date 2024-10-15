@@ -98,8 +98,9 @@ class ConfigurationManager:
             root_dir = config.root_dir,
             train_data_path=config.train_data_path,
             test_data_path=config.test_data_path,
-            best_cross_val_models_rf= config.best_cross_val_models_rf,
-            model_name=config.model_name,
+            metric_file_name_rf=config.metric_file_name_rf,
+            best_model_params_rf=config.best_model_params_rf,
+            final_model_name=config.final_model_name,
             STATUS_FILE= config.STATUS_FILE
         )
 
@@ -112,13 +113,15 @@ class ConfigurationManager:
         #params = self.params.ElasticNet
 
         create_directories([config.root_dir])
+        create_directories([config.metric_file])
 
         model_evaluation_config = ModelEvaluationConfig(
             root_dir=config.root_dir,
             test_data_path=config.test_data_path,
             model_path=config.model_path,
           #  all_params=params,
-            metric_file_name=config.metric_file_name,
+            metric_file=config.metric_file,
+            STATUS_FILE = config.STATUS_FILE
             #target_column=schema.name,
            # mlflow_uri="https://dagshub.com/Parthsarthi-lab/Wine-quality-End-to-end-Project.mlflow"
         )
@@ -132,7 +135,7 @@ class ConfigurationManager:
         create_directories([config.root_dir])
         create_directories([config.extracted_features, config.random_search_models_rf, config.model_cache_rf])
         create_directories([config.train_data_path, config.test_data_path])
-        
+        create_directories([config.metric_file_name_rf, config.best_model_params_rf])
 
         nested_cross_val_config = NestedCrossValConfig(
             root_dir = config.root_dir,
@@ -142,7 +145,9 @@ class ConfigurationManager:
             train_data_path = config.train_data_path,
             test_data_path= config.test_data_path,
             model_name = config.model_name,
-            STATUS_FILE= config.STATUS_FILE
+            STATUS_FILE= config.STATUS_FILE,
+            metric_file_name_rf= config.metric_file_name_rf,
+            best_model_params_rf= config.best_model_params_rf
         )
 
         return nested_cross_val_config

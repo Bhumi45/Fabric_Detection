@@ -28,3 +28,25 @@ try:
 except Exception as e:
     logging.error(e)
     raise CustomException(e,sys)
+
+PIPELINE = "Feature Extraction Training Pipeline"
+try:
+    logging.info(f">>>>> {PIPELINE} started <<<<")
+    feature_extraction = FeatureExtractionPipeline()
+    feature_extraction.main()
+    logging.info(f">>>>>>>> {PIPELINE} completed <<<<<<<<<")
+except Exception as e:
+    logging.error(e)
+    raise CustomException(e,sys)
+
+PIPELINE = "Nested Cross ValidationTraining Pipeline"
+try:
+    logging.info(f">>>>> {PIPELINE} started <<<<")
+    nested_cross_val = NestedCrossValPipeline()
+    nested_cross_val.main()
+    logging.info(f">>>>>>>> {PIPELINE} completed <<<<<<<<<")
+except Exception as e:
+    logging.error(e)
+    raise CustomException(e,sys)
+
+

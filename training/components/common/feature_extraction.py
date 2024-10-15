@@ -134,6 +134,7 @@ class FeatureExtraction:
         # Path to the 'Extracted Features' directory
         save_dir = self.config.root_dir
 
+        logging.info("Dtype of X: {X.dtype}, y: {y.dtype}, groups: {groups.dtype}")
         # Save each array as a separate .npz file
         np.savez(os.path.join(save_dir, 'X.npz'), data=X)
         np.savez(os.path.join(save_dir, 'y.npz'), labels=y)
@@ -201,7 +202,7 @@ class FeatureExtraction:
                     group_id += 1
             
             logging.info("Feature extraction completed successfully")
-
+            
             self.save_features(X, y, groups)
 
 
@@ -211,9 +212,9 @@ class FeatureExtraction:
             raise CustomException(e, sys)            
 
 
-"""if __name__ == "__main__":
+if __name__ == "__main__":
     config = ConfigurationManager()
     feature_extraction_config = config.get_feature_extraction_config()
     feature_extraction = FeatureExtraction(config=feature_extraction_config)
-    feature_extraction.trigger_feature_extraction()"""
+    feature_extraction.trigger_feature_extraction()
 

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fabric Detection App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+
+    <header>
+        <h1>Welcome to the Fabric Detection App</h1>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('prediction') }}">Upload Image for Prediction</a></li>
+                <li><a href="{{ url_for('classification_report') }}">View Classification Report</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h2>About This App</h2>
+            <p>
+                This application allows users to upload fabric images for classification. 
+                The system predicts whether the fabric is Corduroy, Denim, or Linen. 
+                You can also view the classification report for previous predictions.
+            </p>
+        </section>
+
+        <section>
+            <h2>How It Works</h2>
+            <ol>
+                <li>Go to the "Upload Image for Prediction" page.</li>
+                <li>Select an image of the fabric (.png, .jpg, or .jpeg format).</li>
+                <li>The system will analyze the image and return the predicted label.</li>
+                <li>You can also view the classification report for detailed analysis.</li>
+            </ol>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Fabric Detection App. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

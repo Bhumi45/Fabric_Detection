@@ -9,4 +9,5 @@ tensorflow
 python-box
 ensure
 pyYAML
+Flask
 -e .
