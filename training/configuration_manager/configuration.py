@@ -77,12 +77,13 @@ class ConfigurationManager:
         return feature_extraction_config
 #5    
     def get_feature_engineering_config(self) -> FeatureEngineeringConfig:
-        config = self.config.image_processing
+        config = self.config.feature_engineering
         create_directories([config.root_dir])
 
         feature_engineering_config = FeatureEngineeringConfig(
             root_dir = config.root_dir,
-            data_path=config.data_dir,
+            train_data_path=config.train_data_path,
+            test_data_path= config.test_data_path,
             STATUS_FILE=config.STATUS_FILE
         )
 
@@ -97,7 +98,9 @@ class ConfigurationManager:
             root_dir = config.root_dir,
             train_data_path=config.train_data_path,
             test_data_path=config.test_data_path,
-            model_name=config.model_name
+            best_cross_val_models_rf= config.best_cross_val_models_rf,
+            model_name=config.model_name,
+            STATUS_FILE= config.STATUS_FILE
         )
 
         return model_trainer_config

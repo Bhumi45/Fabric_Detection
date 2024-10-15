@@ -165,5 +165,5 @@ cython_debug/
 laptop_notebooks/
 
 # artifacts
-artifacts/feature_extraction/*.npz
+artifacts
 
