@@ -96,10 +96,10 @@ class NestedCrossVal:
         param_grid_rf = self.create_param_grids()
 
         # Performing RandomSearchCV for RF
-        random_search_rf = self.randomized_search_rf(pipeline_rf,param_grid_rf,inner_cv,X_outer_train,y_outer_train,groups_outer_train)
+        random_search_rf = self.randomized_search_rf(count,pipeline_rf,param_grid_rf,inner_cv,X_outer_train,y_outer_train,groups_outer_train)
         best_model_rf = self.get_best_model_rf(random_search_rf)
         self.evaluate_best_model_rf(best_model_rf=best_model_rf, X_outer_val=X_outer_val, y_outer_val=y_outer_val)
-        dump(best_model_rf,f"{self.config.random_search_models__rf}/rf_{count}.joblib")
+        dump(best_model_rf,f"{self.config.random_search_models_rf}/rf_{count}.joblib")
         del best_model_rf
 
 
@@ -107,7 +107,7 @@ class NestedCrossVal:
         # Pipeline for Random Forest Classifier
         pipeline_rf = Pipeline([
             ("scaler", StandardScaler()),
-            ("pca",PCA(n_components=2510)),
+            ("pca",PCA(n_components=None)),
             ("classifier", RandomForestClassifier())
         ])
 
@@ -203,4 +203,4 @@ class NestedCrossVal:
         y_outer_val_pred_rf = best_model_rf.predict(X_outer_val)
 
         with open(self.config.STATUS_FILE,"a") as f:
-            f.write(classification_report(y_outer_val,y_outer_val_pred_rf),"\n\n")
+            f.write(classification_report(y_outer_val,y_outer_val_pred_rf)+"\n\n")
