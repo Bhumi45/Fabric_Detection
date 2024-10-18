@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Nested Cross Validation</title>
+</head>
+<body>
+
+<h2>Run Nested Cross Validation</h2>
+<form method="POST">
+    <button type="submit" name="run_cross_validation">Run Nested Cross Validation</button>
+</form>
+
+{% with messages = get_flashed_messages(with_categories=True) %}
+    {% if messages %}
+        <ul>
+        {% for category, message in messages %}
+            <li class="{{ category }}">{{ message }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+{% endwith %}
+
+{% if completed_cv %}
+    <h3>Nested cross-validation completed.</h3>
+    <form method="POST">
+        <button type="submit" name="train_final_model">Train the model on the entire training data</button>
+    </form>
+{% endif %}
+
+</body>
+</html>

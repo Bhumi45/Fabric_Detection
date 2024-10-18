@@ -1,0 +1,131 @@
+/* General styling for the body */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+    color: #333;
+}
+
+/* Styling for the header */
+header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2rem;
+}
+
+/* Navigation bar styling */
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+/* Main content section styling */
+main {
+    padding: 20px;
+}
+
+h2 {
+    color: #333;
+}
+
+p, ol {
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+ol {
+    padding-left: 1.5rem;
+}
+
+/* Footer styling */
+footer {
+    background-color: #4CAF50;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+
+/* Styling for buttons */
+button, input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+button:hover, input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+/* Styling for tables */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+}
+
+th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/* Form input styling */
+input[type="file"] {
+    padding: 8px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+/* Flash message styling */
+.flash {
+    padding: 10px;
+    margin: 15px 0;
+    border-radius: 5px;
+}
+
+.flash.success {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.flash.error {
+    background-color: #f44336;
+    color: white;
+}
