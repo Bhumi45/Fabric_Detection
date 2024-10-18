@@ -74,11 +74,11 @@ A false negative occurs when the model fails to correctly identify a fabric type
    - Through our literature review we also came to know that denim can be made from cotton & linen, thus again confusing our model between the fabrics.
    - **Taking all these discrepancies into consideration we now decided to only go with two fabric categories, viz., corduroy and denim**
   
-3. Checked the amount of explained variance of our data at different values of PCA components(`n_components`):
+3. Checked the amount of explained variance of our data at different values of PCA components(`n_components`) :
    - Created a new notebook `PCA_explained_variance.ipynb` to understand the explained variance at different levels of `n_components`.
    - n_components=1000 & n_components=2000 had a cumulative variance of only 44% & 60% respectively.
    - n_components=3000 & n_components=4000 had a cumulative variance of 70% & 78% respectively.
-   - Decided to go with at least n_components = 3000 and maximum n_components=4000 so that maximum information can be captured from our data.
+   -  Decided to go with the maximum number of principal components by taking `n_components=None`.
   
 
 **References**
