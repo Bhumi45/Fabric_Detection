@@ -63,23 +63,33 @@ A false negative occurs when the model fails to correctly identify a fabric type
 
 
 
-#### To analyze the **reasons** behind the poor performance of our models(both SVM & Random Forest) we went through the following approaches:
+#### To analyze the **reasons** behind the poor performance of our models(both SVM & Random Forest) we went through the following approaches step by step:
 1. Validated our feature extraction methods again by visually analyzing the features extracted from each class of fabric by each method over a large number of images:
     - Our feature extraction technqiues were able to identify significant features from the fabric images.
-      
-2. Validated whether our choice of fabric categories is correct or not:
+
+2. [Model Performance](https://github.com/Parthsarthi-lab/Fabric_Detection/blob/colab_notebooks_branch/MODEL_PERFORMANCE.md)
+ suggested RandomForestClassifier performing slightly better than SVM.
+   - We further applied more hyperparameter tuning with RandomForestClassifier in `model_training_1_only_RF.ipynb`
+   - No improvement was seen in the RFClassifier's performance
+     
+3. Validated whether our choice of fabric categories was correct or not:
    - We are originally using the following fabric categories for classification: cotton, corduroy, denim, wool & linen.
    - On reiterating through our literature review, we came to know that corduroy can be made from  cotton,wool and linen.
    - This means that an image of corduroy fabric may be classified as cotton, corduroy ,wool and linen at the same time since the material used to make corduroy is cotton, wool, or linen. This may arise confusion in our model and may be responsible for the poor performance of our model.
    - Through our literature review we also came to know that denim can be made from cotton & linen, thus again confusing our model between the fabrics.
    - **Taking all these discrepancies into consideration we now decided to only go with two fabric categories, viz., corduroy and denim**
   
-3. Checked the amount of explained variance of our data at different values of PCA components(`n_components`) :
+4. Checked the amount of explained variance of our data at different values of PCA components(`n_components`):
    - Created a new notebook `PCA_explained_variance.ipynb` to understand the explained variance at different levels of `n_components`.
    - n_components=1000 & n_components=2000 had a cumulative variance of only 44% & 60% respectively.
    - n_components=3000 & n_components=4000 had a cumulative variance of 70% & 78% respectively.
-   -  Decided to go with the maximum number of principal components by taking `n_components=None`.
-  
+   - Decided to go with the maximum number of principal components by taking `n_components=None`.
+
+5. **Decided to go only with RandomForestClassifier**
+     - We could have still gone ahead with both Support Vector Machines  and RandomForestClassifier because the model performance of RandomForestClassifier was only slightly
+       more than that of Support Vector Machines.
+     - To reduce the complexity of the project we decided to go ahead with RandomForestClassifier only though SVM can be implemented in a similar way.
+
 
 **References**
 
