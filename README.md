@@ -8,6 +8,8 @@ The goal of this branch is to offer a stable and well-optimized pipeline for tra
 
 The model is designed to classify fabric types corduroy and denimusing advanced image processing and machine learning techniques.
 
+**_Note: This branch is only finalised for Training pipeline and not the Deployment pipeline. For deployment pipeline check `deployment_piepline` branch_**
+
 ## Pipeline components:
 
 ### 1. Nested Cross Validation
@@ -23,7 +25,7 @@ The model is designed to classify fabric types corduroy and denimusing advanced 
 - **Feature Engineering** - Standardizes the features and performs dimensionality reduction using Principal Component Analysis(PCA).
 - **Model Training**: Performs the final model training on the entire training data by using the best model selected from the *Nested Cross Validation Component* .
 - **Model Evaluation** - The final model trained on the entire training data is evaluated on the test data and the metrics are saved at artifacts/model_evaluation/metrics.json
-- 
+  
 ## Key Files
 
 - **`execute_cross_validation.py`**: Runs nested cross-validation to identify the best model.
@@ -48,14 +50,7 @@ Follow the steps below to set up the environment:
     git checkout final_train_pipeline
     ```
 
-2. **Set up Virtual Environment** (optional):
-    ```bash
-    python -m venv fabric_train_env
-    source fabric_train_env/bin/activate   # For Linux/Mac
-    fabric_train_env\Scripts\activate      # For Windows
-    ```
-
-3. **Install Dependencies**:
+2. **Install Dependencies**:
     ```bash
     pip install -r requirements.txt
     ```
