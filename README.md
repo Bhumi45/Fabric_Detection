@@ -21,7 +21,7 @@ The **development** branch is a workspace for integrating, testing, and refining
 ## Feature Branches
 
 1. `final_train_pipeline` : Contains the training pipeline code. Merges into this `development_branch`
-2. `deployment_pipeline`: Contains the deployment pipeline code. Merges into this `development_branch`
+2. `deployment_pipeline`: Contains the deployment pipeline code. Merges its sub-branch `ebs_deployment` into this `development_branch`
 This branch may contain incomplete or experimental code and should not be used for production purposes.
 
 ## Project Structure
