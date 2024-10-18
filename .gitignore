@@ -169,5 +169,6 @@ artifacts
 
 artifacts/feature_engineering/*.npz
 artifacts/nested_cross_val/
+artifacts/feature_engineering
 artifacts/model_trainer/final_model.joblib
-artifacts/feature_engineering/
+
