@@ -5,4 +5,4 @@ using AWS Elastic Beanstalk for hosting, AWS CodePipeline for Continuous Deliver
 
 This branch is finally merged into `development_branch`. 
 
-**For more information on deploying this application refer to (Deployment Guide Wiki)[https://github.com/Parthsarthi-lab/Fabric_Detection/wiki/Deployment]**
+**For more information on deploying this application refer to [Deployment Guide Wiki](https://github.com/Parthsarthi-lab/Fabric_Detection/wiki/Deployment)**
