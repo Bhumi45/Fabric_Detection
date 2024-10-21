@@ -1,5 +1,5 @@
 from deployment.constants import *
-from deployment.utils.common import read_yaml, create_directories
+from utils import read_yaml, create_directories
 from deployment.entity.config_entity import DataIngestionConfig
 from deployment.entity.config_entity import DataValidationConfig
 from deployment.entity.config_entity import ImageProcessingConfig

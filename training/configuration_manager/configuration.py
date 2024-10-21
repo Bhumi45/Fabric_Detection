@@ -1,5 +1,5 @@
 from training.constants import *
-from training.utils.common import read_yaml, create_directories
+from utils import read_yaml, create_directories
 from training.entity.config_entity import DataIngestionConfig
 from training.entity.config_entity import DataValidationConfig
 from training.entity.config_entity import ImageProcessingConfig

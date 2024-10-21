@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, flash, redirect, url_for, send_from_directory, session
-from deployment.utils.common import delete_artifacts_folder
+from utils import delete_artifacts_folder
 from werkzeug.utils import secure_filename
 import os
 import numpy as np
