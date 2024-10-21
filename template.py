@@ -11,12 +11,10 @@ root_directory_files =[
     "README.md",
     "requirements.txt",
     "setup.py",
-    #"Dockerfile",
-    "exception.py",
-    "logger.py",
-    "execute_cross_validation.py",
-    "execute_final_model_training.py"
-    ]
+    "Dockerfile",
+    "common/__init__.py",
+    "execute_train_pipeline.py",
+    "execute_prediction_pipeline.py"]
 
 training_pipeline_files = [
     
