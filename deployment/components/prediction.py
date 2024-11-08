@@ -2,7 +2,8 @@ import numpy as np
 import joblib
 import pandas as pd
 import sys
-from exception import CustomException
+from deployment.exception import PredictionError,handle_exception
+from deployment.custom_logging import info_logger, error_logger
 
 class Prediction:
 
@@ -24,4 +25,4 @@ class Prediction:
             return predicted_label
 
         except Exception as e:
-            raise CustomException(e, sys)
+            handle_exception(e, PredictionError)

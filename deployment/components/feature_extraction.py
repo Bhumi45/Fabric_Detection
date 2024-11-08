@@ -5,8 +5,8 @@ import os
 import sys
 from skimage.feature import local_binary_pattern
 from skimage.filters import gabor
-from exception import CustomException
-from logger import logging
+from deployment.exception import FeatureExtractionError,handle_exception
+from deployment.custom_logging import info_logger, error_logger
 
 
 
@@ -82,22 +82,25 @@ class FeatureExtraction:
 # Function to extract features from an image
 
     def extract_features(self,image):
-        gray=image
-        # Ensure the image is in grayscale
-        #gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+        try:
+            gray=image
+            # Ensure the image is in grayscale
+            #gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
-        # Canny edge detection
-        edges = self.extract_canny_edge_detection(gray)
+            # Canny edge detection
+            edges = self.extract_canny_edge_detection(gray)
 
-        # Gabor Filter responses
-        gabor_features = self.extract_gabor_filters(gray)
+            # Gabor Filter responses
+            gabor_features = self.extract_gabor_filters(gray)
 
-        # Local Binary Patterns (LBP)
-        hist = self.extract_local_binary_pattern(gray)
+            # Local Binary Patterns (LBP)
+            hist = self.extract_local_binary_pattern(gray)
 
-        # Combine features: edges, Gabor, and LBP
-        features = np.hstack([edges.flatten(), gabor_features, hist])
+            # Combine features: edges, Gabor, and LBP
+            features = np.hstack([edges.flatten(), gabor_features, hist])
 
-        return features  # Return features as NumPy array for further processing
-    
+            return features  # Return features as NumPy array for further processing
+        except Exception as e:
+            handle_exception(e, FeatureExtractionError)
+        
 
