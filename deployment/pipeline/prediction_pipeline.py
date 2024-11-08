@@ -2,8 +2,6 @@ from deployment.components.image_processing import ImageProcessing
 from deployment.components.feature_extraction import FeatureExtraction
 from deployment.components.feature_engineering import FeatureEngineering
 from deployment.components.prediction import Prediction
-
-from exception import CustomException
 import sys
 import os
 import json
