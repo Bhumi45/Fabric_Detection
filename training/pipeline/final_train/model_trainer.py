@@ -1,7 +1,6 @@
 from training.configuration_manager.configuration import ConfigurationManager
 from training.components.final_train.model_training import ModelTraining
-from logger import logging
-from exception import CustomException
+from training.custom_logging import info_logger
 import sys
 
 PIPELINE = "Final Model Training Pipeline"
@@ -11,37 +10,31 @@ class ModelTrainingPipeline:
         pass
 
     def main(self):
-        try:
-            #Load the data ingestion configuration object
-            config = ConfigurationManager()
-            model_trainer_config = config.get_model_trainer_config()
+        #Load the data ingestion configuration object
+        config = ConfigurationManager()
+        model_trainer_config = config.get_model_trainer_config()
 
-            model_trainer = ModelTraining(config=model_trainer_config)
+        model_trainer = ModelTraining(config=model_trainer_config)
 
-            # Loading the train data and test data for Final Training
-            X_train, X_test, y_train,y_test, groups_train = model_trainer.load_transformed_data()
+        # Loading the train data and test data for Final Training
+        X_train, X_test, y_train,y_test, groups_train = model_trainer.load_transformed_data()
 
-            # Load the naem of best of the models of NestedCrossVAlidation (This is actually the count of the model which is the best)
-            best_model_count = model_trainer.load_best_model() 
+        # Load the naem of best of the models of NestedCrossVAlidation (This is actually the count of the model which is the best)
+        best_model_count = model_trainer.load_best_model() 
 
-            # Training the final model for Final Training
-            final_model = model_trainer.train_final_model(best_model_count, X_train, y_train)
+        # Training the final model for Final Training
+        final_model = model_trainer.train_final_model(best_model_count, X_train, y_train)
 
-            # Save the final model for Final Training
-            model_trainer.save_final_model(final_model)
-
-        except Exception as e:
-            raise CustomException(e, sys)
+        # Save the final model for Final Training
+        model_trainer.save_final_model(final_model)
         
 if __name__ == "__main__":
-    try:
-        logging.info(f">>>>> {PIPELINE} started <<<<")
+
+        info_logger.info(f">>>>> {PIPELINE} started <<<<")
         obj = ModelTrainingPipeline()
         obj.main()
-        logging.info(f">>>>>>>> {PIPELINE} completed <<<<<<<<<")
-    except Exception as e:
-        logging.error(e)
-        raise CustomException(e, sys)
+        info_logger.info(f">>>>>>>> {PIPELINE} completed <<<<<<<<<")
+
 
 
 
