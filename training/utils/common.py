@@ -7,8 +7,7 @@ from ensure import ensure_annotations
 from pathlib import Path
 from typing import Any
 from box import ConfigBox
-from exception import CustomException
-from logger import logging
+from training.custom_logging import info_logger, error_logger
 
 
 @ensure_annotations
@@ -18,15 +17,11 @@ def read_yaml(path_to_yaml: Path) -> ConfigBox:
     The ConfigBox is a special type of dictionary that allows you to use the keys as attributes.
     :param path_to_yaml: Path to the yaml file
     :return: ConfigBox object
-    :raises CustomException: If the yaml file is not readable or if the content is not a dict
     """
-    try:
-        with open(path_to_yaml) as yaml_file:
-            content = yaml.safe_load(yaml_file) # This will be loaded as a dict
-            logging.info(f"yaml file: {path_to_yaml} loaded successfully as {type(content)}")
-            return ConfigBox(content) # converting the dict to ConfigBox to use the keys as attributes
-    except CustomException as e:
-        raise CustomException(e, sys) 
+    with open(path_to_yaml) as yaml_file:
+        content = yaml.safe_load(yaml_file) # This will be loaded as a dict
+        info_logger.info(f"yaml file: {path_to_yaml} loaded successfully as {type(content)}")
+        return ConfigBox(content) # converting the dict to ConfigBox to use the keys as attributes
     
 
 @ensure_annotations
@@ -40,7 +35,7 @@ def create_directories(path_to_directories: list, verbose=True):
     for path in path_to_directories:
         os.makedirs(path, exist_ok=True)
         if verbose:
-            logging.info(f"Created directory at: {path}")
+            info_logger.info(f"Created directory at: {path}")
 
 
 @ensure_annotations
@@ -54,7 +49,7 @@ def save_json(path: Path, data: dict):
     with open(path, "w") as f:
         json.dump(data, f, indent=4)
 
-    logging.info(f"json file saved at {path}")
+    info_logger.info(f"json file saved at {path}")
 
 
 @ensure_annotations
@@ -67,7 +62,7 @@ def load_json(path: Path) -> ConfigBox:
     with open(path) as f:
         content = json.load(f)  # This will be loaded as a dict
     
-    logging.info(f"json file loaded successfully")
+    info_logger.info(f"json file loaded successfully")
     return ConfigBox(content) # converting the dict to ConfigBox to use the keys as attributes
 
 @ensure_annotations
@@ -79,7 +74,7 @@ def save_bin(data: Any, path: Path):
     :return: None
     """
     joblib.dump(value=data, filename=path)
-    logging.info(f"binary file saved at: {path}")
+    info_logger.info(f"binary file saved at: {path}")
 
 
 @ensure_annotations
@@ -90,7 +85,7 @@ def load_bin(path: Path) -> Any:
     :return: Loaded object
     """
     data = joblib.load(path)
-    logging.info(f"binary file loaded from: {path}")
+    info_logger.info(f"binary file loaded from: {path}")
     return data
 
 @ensure_annotations

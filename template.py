@@ -1,10 +1,12 @@
 import os 
 import os
 from pathlib import Path
-from logger import logging
-
+import logging
 # This file creates the required files in the project directory.
 # Note: you need to make exception.py and logger.py in the root directory yourself before running this file(template.py)
+
+logging.basicConfig("templates.log", level=logging.INFO)
+
 
 root_directory_files =[
     ".gitignore",

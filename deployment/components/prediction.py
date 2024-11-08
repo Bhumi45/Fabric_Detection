@@ -2,7 +2,7 @@ import numpy as np
 import joblib
 import boto3
 import sys
-from exception import CustomException
+from deployment.exception import PredictionError,handle_exception
 
 class Prediction:
 
@@ -13,12 +13,11 @@ class Prediction:
         self.local_model_path = '/tmp/final_model.joblib'  # Temporary local path to save the model
 
     def download_model_from_s3(self):
-        try:
-            # Download the model from S3 to a local path
-            self.s3_client.download_file(self.bucket_name, self.model_key, self.local_model_path)
-            print(f"Model downloaded from S3 and saved to {self.local_model_path}")
-        except Exception as e:
-            raise CustomException(f"Error downloading model: {str(e)}")
+
+        # Download the model from S3 to a local path
+        self.s3_client.download_file(self.bucket_name, self.model_key, self.local_model_path)
+        print(f"Model downloaded from S3 and saved to {self.local_model_path}")
+
 
     def predict(self, transformed_features):
         try:
@@ -39,4 +38,4 @@ class Prediction:
             return predicted_label
 
         except Exception as e:
-            raise CustomException(e, sys)
+            handle_exception(e, PredictionError)

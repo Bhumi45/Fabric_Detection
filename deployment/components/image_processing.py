@@ -1,7 +1,7 @@
 import cv2
 import numpy as np
-from logger import logging
-from exception import CustomException
+from deployment.exception import ImageProcessingError,handle_exception
+from deployment.custom_logging import info_logger, error_logger
 import os
 import sys
 
@@ -23,4 +23,4 @@ class ImageProcessing:
             return image_resized  # Return the processed image for further steps
 
         except Exception as e:
-            raise CustomException(e, sys)
+            handle_exception(e, ImageProcessingError)
