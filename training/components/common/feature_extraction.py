@@ -6,8 +6,8 @@ import sys
 from skimage.feature import local_binary_pattern
 from skimage.filters import gabor
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
-from exception import CustomException
-from logger import logging
+from training.exception import FeatureExtractionError,handle_exception
+from training.custom_logging import info_logger, error_logger
 from training.entity.config_entity import FeatureExtractionConfig
 from training.configuration_manager.configuration import ConfigurationManager
 
@@ -134,13 +134,13 @@ class FeatureExtraction:
         # Path to the 'Extracted Features' directory
         save_dir = self.config.root_dir
 
-        logging.info("Dtype of X: {X.dtype}, y: {y.dtype}, groups: {groups.dtype}")
+        info_logger.info("Dtype of X: {X.dtype}, y: {y.dtype}, groups: {groups.dtype}")
         # Save each array as a separate .npz file
         np.savez(os.path.join(save_dir, 'X.npz'), data=X)
         np.savez(os.path.join(save_dir, 'y.npz'), labels=y)
         np.savez(os.path.join(save_dir, 'groups.npz'), groups=groups)
 
-        logging.info(f"Data, labels, and groups have been saved to {save_dir}")
+        info_logger.info(f"Data, labels, and groups have been saved to {save_dir}")
 
         with open(self.config.STATUS_FILE, "w") as f:
             f.write(f"Feature Extraction status: {True}")
@@ -151,7 +151,7 @@ class FeatureExtraction:
             dataset_dir = self.config.data_dir 
             LABELS = self.config.schema
             categories = [x for x in LABELS.values()]
-
+            print(categories)
             # Prepare dataset, labels, and groups
             X = []
             y = []
@@ -165,7 +165,7 @@ class FeatureExtraction:
                 shear_range=0.4
             )
 
-            logging.info("Starting featuer extraction loop")
+            info_logger.info("Starting featuer extraction loop")
 
             group_id = 0  # Initialize group ID
             # Loop through each category
@@ -201,7 +201,7 @@ class FeatureExtraction:
                     # Increment group ID for the next image and its augmentations
                     group_id += 1
             
-            logging.info("Feature extraction completed successfully")
+            info_logger.info("Feature extraction completed successfully")
             
             self.save_features(X, y, groups)
 
@@ -209,7 +209,7 @@ class FeatureExtraction:
         except Exception as e:
             with open(self.config.STATUS_FILE, "w") as f:
                 f.write(f"Feature Extraction status: {False}")
-            raise CustomException(e, sys)            
+            handle_exception(e, FeatureExtractionError)            
 
 
 if __name__ == "__main__":
