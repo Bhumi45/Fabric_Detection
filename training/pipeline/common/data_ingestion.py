@@ -1,7 +1,6 @@
 from training.configuration_manager.configuration import ConfigurationManager
 from training.components.common.data_ingestion import DataIngestion
-from logger import logging
-from exception import CustomException
+from training.custom_logging import info_logger
 import sys
 
 PIPELINE = "Data Ingestion Training Pipeline"
@@ -22,11 +21,11 @@ class DataIngestionPipeline:
 
     
 
-"""if __name__ == "__main__":
-    logging.info(f">>>>> {PIPELINE} started <<<<")
+if __name__ == "__main__":
+    info_logger.info(f">>>>> {PIPELINE} started <<<<")
     obj = DataIngestionPipeline()
     obj.main()
-    logging.info(f">>>>>>>> {PIPELINE} completed <<<<<<<<<")
-"""
+    info_logger.info(f">>>>>>>> {PIPELINE} completed <<<<<<<<<")
+
 
 
