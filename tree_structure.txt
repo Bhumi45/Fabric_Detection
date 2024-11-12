@@ -1,12 +1,9 @@
 Fabric_Detection/
     .gitattributes
     .gitignore
-    Dockerfile
-    exception.py
+    buildspec.yml
     execute_cross_validation.py
     execute_final_model_training.py
-    execute_prediction_pipeline.py
-    logger.py
     README.md
     requirements.txt
     setup.py
@@ -14,11 +11,73 @@ Fabric_Detection/
     tester.py
     tree.py
     tree_structure.txt
+    .ebextensions/
+        00_packages.config
+        python.config
+    artifacts/
+        feature_engineering/
+            pipeline.joblib
+            status.txt
+            Test.npz
+            Train.npz
+        model_evaluation/
+            status.txt
+            metrics/
+                metrics.json
+        model_trainer/
+            final_model.joblib
+            status.txt
     common/
         __init__.py
-    templates/
-        index.html
+    deployment/
+        app.py
+        custom_logging.py
+        exception.py
+        __init__.py
+        components/
+            feature_engineering.py
+            feature_extraction.py
+            image_processing.py
+            prediction.py
+            __pycache__/
+                feature_engineering.cpython-312.pyc
+                feature_extraction.cpython-312.pyc
+                image_processing.cpython-312.pyc
+                prediction.cpython-312.pyc
+        logs/
+            error_logs/
+                2024-11-08_08-13-01.log
+                2024-11-08_08-13-25.log
+                2024-11-08_08-24-12.log
+                2024-11-08_08-26-57.log
+                2024-11-08_08-28-23.log
+            info_logs/
+                2024-11-08_08-13-01.log
+                2024-11-08_08-13-25.log
+                2024-11-08_08-24-12.log
+                2024-11-08_08-26-57.log
+                2024-11-08_08-28-23.log
+        pipeline/
+            prediction_pipeline.py
+            __init__.py
+            __pycache__/
+                prediction_pipeline.cpython-312.pyc
+                __init__.cpython-312.pyc
+        static/
+            styles.css
+        templates/
+            index.html
+            predict.html
+            upload_image.html
+        __pycache__/
+            custom_logging.cpython-312.pyc
+            exception.cpython-312.pyc
+            __init__.cpython-312.pyc
+    images/
+        logo_tm.jpg
     training/
+        custom_logging.py
+        exception.py
         __init__.py
         components/
             __init__.py
@@ -28,12 +87,8 @@ Fabric_Detection/
                 feature_extraction.py
                 __init__.py
                 __pycache__/
-                    data_ingestion.cpython-312.pyc
-                    data_validation.cpython-312.pyc
                     feature_extraction.cpython-310.pyc
-                    feature_extraction.cpython-312.pyc
                     __init__.cpython-310.pyc
-                    __init__.cpython-312.pyc
             cross_val/
                 nested_cross_val.py
                 __init__.py
@@ -45,12 +100,6 @@ Fabric_Detection/
                 model_evaluation.py
                 model_training.py
                 __init__.py
-                __pycache__/
-                    feature_engineering.cpython-312.pyc
-                    __init__.cpython-312.pyc
-            __pycache__/
-                feature_extraction.cpython-312.pyc
-                __init__.cpython-312.pyc
         config/
             config.yaml
             params.yaml
@@ -69,6 +118,13 @@ Fabric_Detection/
             config_entity.py
             __pycache__/
                 config_entity.cpython-312.pyc
+        logs/
+            error_logs/
+                2024-11-08_07-21-44.log
+                2024-11-08_08-12-23.log
+            info_logs/
+                2024-11-08_07-21-44.log
+                2024-11-08_08-12-23.log
         pipeline/
             __init__.py
             common/
@@ -87,9 +143,10 @@ Fabric_Detection/
         utils/
             common.py
             __init__.py
-            __pycache__/
-                common.cpython-312.pyc
-                __init__.cpython-312.pyc
         __pycache__/
+            custom_logging.cpython-312.pyc
             __init__.cpython-310.pyc
             __init__.cpython-312.pyc
+    __pycache__/
+        exception.cpython-312.pyc
+        logger.cpython-312.pyc
