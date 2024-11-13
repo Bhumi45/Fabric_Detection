@@ -14,19 +14,6 @@ Fabric_Detection/
     .ebextensions/
         00_packages.config
         python.config
-    artifacts/
-        feature_engineering/
-            pipeline.joblib
-            status.txt
-            Test.npz
-            Train.npz
-        model_evaluation/
-            status.txt
-            metrics/
-                metrics.json
-        model_trainer/
-            final_model.joblib
-            status.txt
     common/
         __init__.py
     deployment/
@@ -73,8 +60,6 @@ Fabric_Detection/
             custom_logging.cpython-312.pyc
             exception.cpython-312.pyc
             __init__.cpython-312.pyc
-    images/
-        logo_tm.jpg
     training/
         custom_logging.py
         exception.py
@@ -87,19 +72,27 @@ Fabric_Detection/
                 feature_extraction.py
                 __init__.py
                 __pycache__/
+                    data_ingestion.cpython-312.pyc
+                    data_validation.cpython-312.pyc
                     feature_extraction.cpython-310.pyc
+                    feature_extraction.cpython-312.pyc
                     __init__.cpython-310.pyc
+                    __init__.cpython-312.pyc
             cross_val/
                 nested_cross_val.py
                 __init__.py
                 __pycache__/
                     nested_cross_val.cpython-310.pyc
+                    nested_cross_val.cpython-312.pyc
                     __init__.cpython-310.pyc
+                    __init__.cpython-312.pyc
             final_train/
                 feature_engineering.py
                 model_evaluation.py
                 model_training.py
                 __init__.py
+            __pycache__/
+                __init__.cpython-312.pyc
         config/
             config.yaml
             params.yaml
@@ -122,9 +115,11 @@ Fabric_Detection/
             error_logs/
                 2024-11-08_07-21-44.log
                 2024-11-08_08-12-23.log
+                2024-11-12_07-22-04.log
             info_logs/
                 2024-11-08_07-21-44.log
                 2024-11-08_08-12-23.log
+                2024-11-12_07-22-04.log
         pipeline/
             __init__.py
             common/
@@ -132,21 +127,32 @@ Fabric_Detection/
                 data_validation.py
                 feature_extraction.py
                 __init__.py
+                __pycache__/
+                    data_ingestion.cpython-312.pyc
+                    data_validation.cpython-312.pyc
+                    feature_extraction.cpython-312.pyc
+                    __init__.cpython-312.pyc
             cross_val/
                 nested_cross_val.py
                 __init__.py
+                __pycache__/
+                    nested_cross_val.cpython-312.pyc
+                    __init__.cpython-312.pyc
             final_train/
                 feature_engineering.py
                 model_evaluation.py
                 model_trainer.py
                 __init__.py
+            __pycache__/
+                __init__.cpython-312.pyc
         utils/
             common.py
             __init__.py
+            __pycache__/
+                common.cpython-312.pyc
+                __init__.cpython-312.pyc
         __pycache__/
             custom_logging.cpython-312.pyc
+            exception.cpython-312.pyc
             __init__.cpython-310.pyc
             __init__.cpython-312.pyc
-    __pycache__/
-        exception.cpython-312.pyc
-        logger.cpython-312.pyc

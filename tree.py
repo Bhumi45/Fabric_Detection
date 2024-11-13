@@ -32,6 +32,6 @@ def _list_files_to_stream(startpath, exclude_folders, stream_func):
 
 # Specify your project directory and the folders you want to exclude
 project_directory = '.'  # Change if needed\
-exclude_folders = ['Fabric_Detection_Project.egg-info', "data","logs",'fabric_venv', 'laptop_notebooks',".git"]  # Add your virtual environment and image folders here
+exclude_folders = ['Fabric_Detection_Project.egg-info', "data","logs",'fabric_venv', 'laptop_notebooks',".git","artifacts","images","__pycache__"]  # Add your virtual environment and image folders here
 
 list_files(project_directory, exclude_folders, output_file="tree_structure.txt")  # Set output_file to 'tree_structure.txt' to write to file
