@@ -4,13 +4,13 @@ from pathlib import Path
 import logging
 # This file creates the required files in the project directory.
 
-logging.basicConfig("templates.log", level=logging.INFO)
+logging.basicConfig(filename="templates.log", level=logging.INFO)
 
 
 root_directory_files =[
     ".gitignore",
     "execute_cross_validation.py",
-    "execute_final_model_training.py"
+    "execute_final_model_training.py",
     "README.md",
     "requirements.txt",
     "setup.py",
@@ -64,8 +64,8 @@ deployment_pipeline_files =[
     "deployment/components/feature_extraction.py",
     "deployment/components/prediction.py",
     "deployment/components/feature_engineering.py",
-    "deployemnt/pipeline/__init__.py",
-    "deployment/pipeline/prediction_pipeline.py"
+    "deployment/pipeline/__init__.py",
+    "deployment/pipeline/prediction_pipeline.py",
     "deployment/static/styles.css",
     "deployment/templates/index.html",
     "deployment/templates/predict.html",
