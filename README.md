@@ -1,9 +1,5 @@
 # Fabric Detection Model
 
-<p align="center">
-<!-- Here goes the logo-->
-  <img src="images/logo_tm.jpg" alt="Company Logo" width="400">
-</p>
 
 <p align="center">
 <!--Here come the badges-->
@@ -69,12 +65,12 @@ The **Fabric Detection Model** leverages image processing and machine learning a
 
 ## 🔍 Literature Review
 
-**Detailed literature review for our project can be found at [Literature Review Wiki](https://github.com/Parthsarthi-lab/Fabric_Detection/wiki/Literature-Review)**
+**Detailed literature review for our project can be found at [Literature Review Wiki](https://github.com/Bhumi45/Fabric_Detection/wiki/Literature-Review)**
 
 
 ## 📄 Full Documentation
 
-**To learn more about the Project(Literature Review, Project Workflow) refer to our project's [Wiki](https://github.com/Parthsarthi-lab/Fabric_Detection/wiki).**
+**To learn more about the Project(Literature Review, Project Workflow) refer to our project's [Wiki](https://github.com/Bhumi45/Fabric_Detection/wiki).**
 ## 🚀 Installation Instructions
 
 - Python 3.12+
@@ -83,7 +79,7 @@ The **Fabric Detection Model** leverages image processing and machine learning a
 
 1. **Clone the Repository**:
     ```bash
-    https://github.com/Parthsarthi-lab/Fabric_Detection.git
+    https://github.com/Bhumi45/Fabric_Detection.git
     cd Fabric_Detection
     git checkout final_train_pipeline
     ```
@@ -116,8 +112,8 @@ python execute_final_model_training.py
 
 ## ⚙️ Executing the Deployment Pipeline
 
-i. **On Cloud**: If you want to deploy the model on cloud refer to our [Deployment Wiki](https://github.com/Parthsarthi-lab/Fabric_Detection/wiki/Deployment).
+i. **On Cloud**: If you want to deploy the model on cloud refer to our [Deployment Wiki](https://github.com/Bhumi45/Fabric_Detection/wiki/Deployment).
 
-   ii. **On Local Machine**: If you want to execute the deployment pipeline to create a Flask web application locally refer to our [Deployment Branch](https://github.com/Parthsarthi-lab/Fabric_Detection/tree/deployment_pipeline). 
+   ii. **On Local Machine**: If you want to execute the deployment pipeline to create a Flask web application locally refer to our [Deployment Branch](https://github.com/Bhumi45/Fabric_Detection/tree/deployment_pipeline). 
 
 
