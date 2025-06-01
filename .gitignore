@@ -165,7 +165,7 @@ cython_debug/
 laptop_notebooks/
 
 # artifacts
-
+artifacts
 
 artifacts/feature_engineering/*.npz
 artifacts/nested_cross_val/
