@@ -21,6 +21,5 @@ class ImageProcessing:
             image_resized = cv2.resize(image_gray, (128, 128))
 
             return image_resized  # Return the processed image for further steps
-
         except Exception as e:
             handle_exception(e, ImageProcessingError)
