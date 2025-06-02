@@ -61,8 +61,6 @@ The **Fabric Detection Model** leverages image processing and machine learning a
 
    **_Note: For branch specific details refer to the README.md of the respective branch_**
 
-
-
 ## 🔍 Literature Review
 
 **Detailed literature review for our project can be found at [Literature Review Wiki](https://github.com/Bhumi45/Fabric_Detection/wiki/Literature-Review)**
@@ -109,35 +107,9 @@ python execute_cross_validation.py
 python execute_final_model_training.py
 ```
 
-
 ## ⚙️ Executing the Deployment Pipeline
 
 i. **On Cloud**: If you want to deploy the model on cloud refer to our [Deployment Wiki](https://github.com/Bhumi45/Fabric_Detection/wiki/Deployment).
 
    ii. **On Local Machine**: If you want to execute the deployment pipeline to create a Flask web application locally refer to our [Deployment Branch](https://github.com/Bhumi45/Fabric_Detection/tree/deployment_pipeline). 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
