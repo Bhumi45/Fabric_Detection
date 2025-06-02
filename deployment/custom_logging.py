@@ -6,7 +6,6 @@ from datetime import datetime
 if not os.path.exists("deployment/logs"):
     os.makedirs("deployment/logs")
 
-
 def setup_info_logger():
     """
     Sets up a logger that writes only INFO level logs to a dynamically named log file based on the current date and time.
