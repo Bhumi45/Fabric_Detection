@@ -53,7 +53,6 @@ def setup_error_logger():
     # Create the error logger
     error_logger = logging.getLogger("error_logger")
 
-
     # Set the levels
     error_logger.setLevel(logging.ERROR)
 
