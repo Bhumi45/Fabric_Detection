@@ -34,3 +34,10 @@ model_evaluation = ModelEvaluationTrainingPipeline()
 model_evaluation.main()
 info_logger.info(f">>>>>>>> {PIPELINE} completed <<<<<<<<<")
 
+
+
+
+
+
+
+
