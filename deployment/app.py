@@ -11,7 +11,6 @@ import subprocess
 import cv2
 import numpy as np
 
-
 app = Flask(__name__)
 app.secret_key = os.urandom(24)  # Add secret key for flashing
 
