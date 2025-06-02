@@ -36,6 +36,5 @@ class Prediction:
             predicted_label = category_mapping.get(prediction, "Unknown")
 
             return predicted_label
-
         except Exception as e:
             handle_exception(e, PredictionError)
