@@ -28,7 +28,6 @@ class PipelineError(Exception):
 
 # Specific pipeline exceptions
 
-
 class ImageProcessingError(PipelineError):
     pass
 class FeatureExtractionError(PipelineError):
