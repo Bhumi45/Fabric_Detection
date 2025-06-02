@@ -113,3 +113,4 @@ i. **On Cloud**: If you want to deploy the model on cloud refer to our [Deployme
 
    ii. **On Local Machine**: If you want to execute the deployment pipeline to create a Flask web application locally refer to our [Deployment Branch](https://github.com/Bhumi45/Fabric_Detection/tree/deployment_pipeline). 
 
+
