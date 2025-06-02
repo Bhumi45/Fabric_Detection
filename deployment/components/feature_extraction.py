@@ -9,7 +9,6 @@ from deployment.exception import FeatureExtractionError,handle_exception
 from deployment.custom_logging import info_logger, error_logger
 
 
-
 class FeatureExtraction:
     def __init__(self):
         pass
